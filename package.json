@@ -1,15 +1,19 @@
 {
   "name": "build-sprint-app",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Landing page for a local appliance comparison assistant",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "node scripts/serve.mjs",
+    "build": "node scripts/build.mjs",
+    "test": "npm run build",
+    "deploy": "npx @convex-dev/static-hosting deploy"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@convex-dev/static-hosting": "^0.2.1",
     "convex": "^1.46.0"
   }
 }
