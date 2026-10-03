@@ -8,7 +8,7 @@ Mobile app, supported by a web landing page and a planned comparison-history das
 
 ## Stack
 
-Delegated: a dependency-free static site for this first landing-page milestone, ready to move into Convex static hosting later.
+Static HTML, CSS, and JavaScript, published with Convex static hosting using npm run deploy.
 
 ## Users
 
@@ -50,3 +50,7 @@ In the mobile app, the user starts with one appliance type, their area, requirem
 ## Landing-page direction
 
 The main action directs visitors to the mobile app. Calls are started and managed from the mobile app. The web dashboard is planned for saved comparisons and history. No app-store links or dashboard URL have been supplied; show coming-soon availability until real destinations exist.
+
+## Availability and claims
+
+The app and dashboard are planned, not usable yet. The current primary action opens a sample comparison. Do not offer downloads until a real app link exists. Catalog requests do not guarantee delivery; missing answers and failed calls must stay visible. Launch date, supported phones, service areas, call languages, and pricing are unannounced.

@@ -11,6 +11,10 @@ internalLinks.forEach((link) => {
         ? "auto"
         : "smooth",
     });
-    history.replaceState(null, "", link.getAttribute("href"));
+    if (!target.hasAttribute("tabindex")) target.setAttribute("tabindex", "-1");
+    target.focus({ preventScroll: true });
+    if (location.hash !== link.getAttribute("href")) {
+      history.pushState(null, "", link.getAttribute("href"));
+    }
   });
 });
