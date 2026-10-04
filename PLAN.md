@@ -1,86 +1,93 @@
-# V1 Plan: Household Appliance Comparison Assistant
+# V1 Plan: Buying Companion for One Purchase
 
-## First user and purpose
+## Purpose
 
-The first user is Praveen, comparing kitchen chimneys before purchasing. The product saves the time spent visiting or calling shops and collecting information by gathering comparable answers in one place.
+Help a buyer prepare for shop visits, collect comparable notes, and choose an option that fits their budget and situation.
 
-V1 also supports household electronic appliances needed for a new house, including refrigerators and washing machines. Each comparison covers one appliance type.
+The first user is Praveen, comparing kitchen chimneys. The flow can support other household appliances, but each purchase compares one item type. The user visits shops and asks the questions themselves.
 
-## First screen and user flow
+This plan replaces the calling-based v1. IDEA_SCOPE.md still describes the original idea; use this plan and the updated brief for v1.
 
-The first screen is a chat window with the question:
+## Core flow
 
-> What do you want to buy?
+Before the shop, the user enters the item, budget, and situation. AI lists the three or four things that matter most and the questions to ask every shop.
 
-A text box lets the user type the product and their details.
+In the shop, the user adds a quick note per shop with price, model, warranty, and what is included, either typed or from a price-tag photo.
 
-The chat collects the user's area and product requirements, asking for missing details as needed. It also asks for the WhatsApp number where shops should send catalogs.
+After the visits, a side-by-side table flags missing information and explains which option fits what the user asked for.
 
-The assistant finds nearby shops and presents their names and phone numbers. The user approves up to five shops before any calls begin.
+## Rules throughout v1
 
-The voice agent calls the approved shops one by one, asks the five questions below, and follows up on missing details. The user receives call results and a comparison table.
+- Missing information is flagged, never guessed. Show **Not provided** for absent details and **Needs checking** for unclear or conflicting details.
+- Keep notes and photos as the source of shop information. Distinguish AI buying advice from recorded shop details.
+- A listed price is not a final total unless its inclusions are known. Keep currency, units, and known extra costs visible.
+- Explain recommendations using the user's needs and recorded details. If essential information is missing, explain what needs checking before choosing.
+- Make the experience comfortable to use on a phone during a shop visit.
 
-## Five questions asked of every shop
+## Numbered milestones in build order
 
-1. **Models, features, and catalog:** What are your latest models and their features? Can you send the product catalog or specification sheet to the user's provided WhatsApp number?
-2. **Warranty and service:** What warranty and service does each model include?
-3. **Maintenance and running details:** Which model needs the least maintenance, and what are its noise level in decibels and power consumption?
-4. **Installation or delivery:** What does installation cost, and what is the earliest installation date? Where installation does not apply, ask about delivery cost and date.
-5. **Final offer:** What is your final offer, including the product and installation or delivery?
+### 1. Create and save one purchase
 
-Adapt the wording to the appliance while keeping the same five comparison categories. Ask follow-up questions when a shop leaves a detail unanswered. Record maintenance claims as shop claims rather than treating them as verified facts.
+Build the opening screen for item, budget, and situation, including intended use, constraints, and priorities. Ask a short follow-up only when needed for useful advice.
 
-## Catalogs through WhatsApp
+Save the purchase in Convex so the user can return to it. Use Convex Auth for sign-in so saved purchases, notes, and photos belong to the buyer and are accessible only to them.
 
-The agent requests that shops send catalogs directly to the WhatsApp number supplied by the user. Record whether each shop agreed to send one.
+**Done when:** A user can create, reopen, and edit a purchase without losing it; another user cannot access it.
 
-Catalogs help the user check model names, features, and specifications against the call answers. An agreement to send a catalog does not mean it has been received.
+### 2. Prepare the shop checklist
 
-Automatic WhatsApp receipt, catalog reading, and attachment handling are not yet agreed implementation requirements. The agreed v1 requirement is to request catalogs and record the shop's response.
+Use AI to identify three or four important buying factors for the item and situation. Explain them in plain words and give a short set of questions to ask every shop, including model, price, warranty, and what the price includes.
 
-## Comparison table
+Save the checklist with the purchase so each visit follows the same questions. General advice must not claim facts about a particular shop or model.
 
-Show one row for each model offered by each shop, with these columns:
+**Done when:** A kitchen-chimney buyer receives a short, relevant checklist they can use on their phone across shops.
 
-- Shop name and phone number
-- Model
-- Features
-- Warranty and service
-- Maintenance requirements
-- Noise level in decibels
-- Power consumption
-- Installation or delivery cost
-- Earliest installation or delivery date
-- Final total price, including installation or delivery
-- Catalog request status
+### 3. Capture typed shop notes
 
-Show **Not provided** for missing answers. Flag unclear answers for checking and never invent values. Keep units and price inclusions visible so the user can compare accurately.
+Add a quick form for shop name, model, price, warranty, and what is included. Allow notes for the checklist's buying factors and any extra costs mentioned by the shop.
 
-## Call failures and saved results
+Allow incomplete notes, adding another shop, and editing earlier entries. Missing details must not block saving.
 
-Check phone numbers before calling. Show the outcome of each call, including unanswered or failed calls, and let the user retry failed calls.
+**Done when:** Notes from multiple shops can be saved and reopened; an unknown warranty or installation cost stays missing.
 
-Save completed results so a later failed call does not erase earlier answers. Keep partial results visible with missing details marked.
+### 4. Capture a price-tag photo
 
-## V1 boundaries
+Let the user attach a price-tag photo to a shop note, stored privately in Convex. AI extracts only readable details and shows them for the user to confirm or correct before adding them to the note.
 
-V1 covers collecting requirements, finding and approving shops, calling them, requesting catalogs, and comparing their offers.
+Keep the original photo available. Flag unreadable text and conflicts with existing notes rather than silently overwriting them. If extraction fails, retain the photo and allow typed entry.
 
-Negotiation and purchasing are outside v1. The first user makes the purchase decision using the comparison and catalogs.
+**Done when:** A clear photo supplies confirmed details; a blurry or incomplete photo produces visible gaps instead of invented values.
 
-## Before building
+### 5. Build the side-by-side comparison table
 
-Praveen will run a 30-minute test with a real shop to check whether shopkeepers will answer these questions from an AI assistant. Include the request to send a catalog through WhatsApp.
+Show one column per shop option and rows for model, price, warranty, inclusions, known extra costs, and the three or four buying factors. Keep the user's budget and priorities visible.
 
-The main assumption to test is that shops will participate and provide enough comparable details to save the user time.
+Flag missing information, unclear inclusions, and conflicting details. Calculate a total only when all required costs are known; otherwise label it incomplete. Make the table usable on a phone and link each option to its note and photo.
 
-## Open details
+**Done when:** Two or more options can be compared side by side, with every unknown visible.
 
-- The first three testers beyond Praveen have not been selected.
-- The starting area and languages for calls have not been selected.
-- The calling service and the method for finding shops require investigation before implementation.
-- Automatic use of WhatsApp catalogs, if wanted, needs a separate decision.
+### 6. Explain which option fits
+
+Add a short AI assessment tied to the user's budget, situation, and priorities. Explain each option's relevant strengths and tradeoffs using saved information.
+
+When the evidence supports a preferred option, explain why it fits. When missing details could change the choice, give a conditional assessment and list what to ask next. Let the user update notes and refresh the comparison.
+
+**Done when:** The assessment explains a fit without inventing specifications, treating shop claims as verified facts, or hiding uncertainty.
+
+### 7. Check the whole flow and publish
+
+Walk through one real purchase: enter requirements, use the checklist, record multiple shops, confirm a photo, and review the table and assessment. Check incomplete notes, unreadable photos, failed AI requests, saving and reopening, and access to another user's data.
+
+Update the landing page to explain the buying companion and remove calling promises. Describe availability accurately. Save working milestones in git, publish through Convex static hosting using `npm run deploy`, and check the live page on a phone-sized screen.
+
+**Done when:** The complete flow works with real shop notes, missing information stays flagged, and the published page describes the actual product.
+
+## Outside v1
+
+Shop calling, voice agents, shop discovery, negotiation, WhatsApp catalog requests, checkout, and purchasing are outside v1. A separate history dashboard and managing several purchases at once are also outside this first build.
 
 ## Build constraints
 
-No code was written during this planning session. Future implementation uses the project's fixed stack: Codex for code, GitHub for source control, and Convex for the database, backend, sign-in, and static hosting. Any additional service needed for calls, shop discovery, or WhatsApp requires the user's approval before use.
+Use Codex for code, GitHub for source control, and Convex for the database, backend, sign-in, photo storage, and static hosting. Any additional service needed for AI or photo reading requires the user's approval before use.
+
+This planning change writes no application code and does not deploy the page.
