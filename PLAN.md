@@ -28,6 +28,8 @@ After the visits, a side-by-side table flags missing information and explains wh
 
 ### 1. Create and save one purchase
 
+**Status:** Built and checked locally against the development Convex backend. See README.md for the checking steps. Production publishing remains a later milestone.
+
 Build the opening screen for item, budget, and situation, including intended use, constraints, and priorities. Ask a short follow-up only when needed for useful advice.
 
 Save the purchase in Convex so the user can return to it. Use Convex Auth for sign-in so saved purchases, notes, and photos belong to the buyer and are accessible only to them.

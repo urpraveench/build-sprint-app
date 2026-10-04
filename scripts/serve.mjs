@@ -15,6 +15,7 @@ createServer((request, response) => {
   const requestedPath = decodeURIComponent(request.url?.split("?")[0] || "/");
   const safePath = normalize(requestedPath).replace(/^(\.\.[/\\])+/, "");
   let filePath = join(root, safePath === "/" ? "index.html" : safePath);
+  if (safePath === "/app.js") filePath = join(root, "dist/app.js");
 
   if (!existsSync(filePath) || statSync(filePath).isDirectory()) {
     filePath = join(root, "index.html");

@@ -4,16 +4,30 @@
   "description": "Landing page for a local appliance comparison assistant",
   "type": "module",
   "scripts": {
-    "dev": "node scripts/serve.mjs",
+    "dev": "npm run build && node scripts/serve.mjs",
     "build": "node scripts/build.mjs",
-    "test": "node --test tests/*.test.mjs && npm run build",
+    "test": "node --test tests/*.test.mjs && vitest run && npm run typecheck && npm run build",
+    "typecheck": "tsc --noEmit -p convex/tsconfig.json",
     "deploy": "npx @convex-dev/static-hosting deploy"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@convex-dev/auth": "^0.0.96",
     "@convex-dev/static-hosting": "^0.2.1",
-    "convex": "^1.46.0"
+    "convex": "^1.46.0",
+    "jose": "^6.2.12",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0"
+  },
+  "devDependencies": {
+    "@types/node": "^26.6.4",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "convex-test": "^0.0.60",
+    "esbuild": "^0.28.2",
+    "typescript": "^7.0.2",
+    "vitest": "^5.0.3"
   }
 }
