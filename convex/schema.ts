@@ -4,6 +4,9 @@ import { v } from "convex/values";
 
 export default defineSchema({
   ...authTables,
+  waitlist: defineTable({
+    email: v.string(),
+  }).index("by_email", ["email"]),
   purchases: defineTable({
     userId: v.id("users"),
     item: v.string(),

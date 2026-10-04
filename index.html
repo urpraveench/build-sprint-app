@@ -32,12 +32,12 @@
     <main id="main">
       <section class="hero" id="top">
         <div class="hero-copy">
-          <h1>Your next appliance.<br />Your phone does the legwork.</h1>
+          <h1>Compare shop offers and choose the right product for your needs at the right price</h1>
           <p class="hero-lede">
             A mobile app, coming soon, for comparing nearby appliance shops. The plan: tell it what you need, approve the shops, and let the assistant call them. Review their answers together on your phone.
           </p>
           <div class="hero-actions">
-            <a class="button button-primary" href="#example">See a sample comparison</a>
+            <a class="button button-primary" href="#download">Join the waitlist</a>
             <a class="text-link" href="#how-it-works">How it will work</a>
           </div>
           <p class="boundary">Coming soon. This page is a preview; you can’t start calls or download the app yet.</p>
@@ -140,8 +140,15 @@
         <a class="button button-light" href="#how-it-works">Explore the planned flow</a>
       </section>
       <section class="download" id="download" aria-labelledby="download-title">
-        <div><h2 id="download-title">Mobile app coming soon.</h2><p>Requests, shop approvals, and calls are planned for the mobile app. The companion website dashboard is planned for revisiting saved comparisons and history.</p></div>
-        <div class="download-availability"><h3>Not available to download yet</h3><p>A launch date, supported phones, service areas, call languages, and pricing haven’t been announced. Download links will be added when the app is available.</p><a class="text-link" href="#example">Explore the sample comparison</a><p class="dashboard-note">The web dashboard is also planned and isn’t available yet.</p></div>
+        <div><h2 id="download-title">Join the waitlist</h2></div>
+        <div class="download-availability">
+          <form id="waitlist-form">
+            <label for="waitlist-email">Email</label>
+            <input id="waitlist-email" name="email" type="email" autocomplete="email" maxlength="254" required />
+            <button class="button button-primary" type="submit">Join the waitlist</button>
+          </form>
+          <p id="waitlist-status" role="status" aria-live="polite" hidden></p>
+        </div>
       </section>
     </main>
 
@@ -151,5 +158,6 @@
     </footer>
 
     <script src="./script.js"></script>
+    <script type="module" src="./waitlist.js"></script>
   </body>
 </html>

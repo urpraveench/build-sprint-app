@@ -14,14 +14,16 @@ for (const file of ["index.html", "styles.css", "script.js"]) {
   cpSync(file, `dist/${file}`);
 }
 
+await build({ entryPoints: ["src/waitlist.js"], outfile: "dist/waitlist.js", bundle: true, minify: true, format: "esm", target: "es2022", define: { CONVEX_URL: JSON.stringify(convexUrl) } });
+
 // Content-based URLs prevent browsers from reusing assets from an older release.
 const { createHash } = await import("node:crypto");
 let html = readFileSync("dist/index.html", "utf8");
-for (const file of ["styles.css", "script.js"]) {
+for (const file of ["styles.css", "script.js", "waitlist.js"]) {
   const hash = createHash("sha256").update(readFileSync(`dist/${file}`)).digest("hex").slice(0, 12);
   const versioned = file.replace(/(\.[^.]+)$/, `.${hash}$1`);
   cpSync(`dist/${file}`, `dist/${versioned}`);
-  rmSync(`dist/${file}`);
+  if (file !== "waitlist.js") rmSync(`dist/${file}`);
   html = html.replace(`./${file}`, `./${versioned}`);
 }
 writeFileSync("dist/index.html", html);
