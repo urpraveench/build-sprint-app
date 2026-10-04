@@ -1,6 +1,6 @@
 ---
-name: Shop calls, sorted.
-description: A buyer's comparison brief brought to life through a clear cobalt call board.
+name: Buying companion
+description: Keep shop offers together, compare them against your needs, and prepare to bargain.
 colors:
   ink: "#142433"
   ink-soft: "#506273"
@@ -14,43 +14,17 @@ colors:
   missing-soft: "#fff0ec"
   missing-ink: "#a43c24"
 typography:
-  display:
-    fontFamily: "Georgia, Times New Roman, serif"
-    fontSize: "clamp(3.4rem, 5.7vw, 5.8rem)"
-    fontWeight: 700
-    lineHeight: 0.98
-    letterSpacing: "-0.04em"
-  headline:
-    fontFamily: "Georgia, Times New Roman, serif"
-    fontSize: "clamp(2.4rem, 4vw, 4.3rem)"
-    fontWeight: 700
-    lineHeight: 1.06
-    letterSpacing: "-0.035em"
-  title:
-    fontFamily: "Avenir Next, Avenir, Segoe UI, sans-serif"
-    fontSize: "1.25rem"
-    fontWeight: 700
-    lineHeight: 1.55
-    letterSpacing: "-0.015em"
-  body:
-    fontFamily: "Avenir Next, Avenir, Segoe UI, sans-serif"
-    fontSize: "1rem"
-    fontWeight: 400
-    lineHeight: 1.55
-    letterSpacing: "normal"
-  label:
-    fontFamily: "Avenir Next, Avenir, Segoe UI, sans-serif"
-    fontSize: "0.74rem"
-    fontWeight: 750
-    lineHeight: 1.5
-    letterSpacing: "0.04em"
+  family: "Arial, sans-serif"
+  headline: {fontSize: "32px", fontWeight: 700, lineHeight: 1.2}
+  title: {fontSize: "24px", fontWeight: 700, lineHeight: 1.3}
+  body: {fontSize: "16px", fontWeight: 400, lineHeight: 1.5}
+  label: {fontSize: "14px", fontWeight: 700, lineHeight: 1.5}
 rounded:
   status: "6px"
   action: "12px"
   note: "14px"
   surface: "16px"
   board: "28px"
-  pill: "999px"
 spacing:
   xs: "8px"
   sm: "12px"
@@ -62,169 +36,132 @@ components:
   button-primary:
     backgroundColor: "{colors.cobalt}"
     textColor: "{colors.white}"
-    typography: "{typography.body}"
     rounded: "{rounded.action}"
     padding: "0 24px"
     height: "52px"
-  button-primary-hover:
-    backgroundColor: "{colors.cobalt-deep}"
-    textColor: "{colors.white}"
-    rounded: "{rounded.action}"
-    padding: "0 24px"
-    height: "52px"
-  button-light:
-    backgroundColor: "{colors.sun}"
-    textColor: "{colors.ink}"
-    typography: "{typography.body}"
-    rounded: "{rounded.action}"
-    padding: "0 24px"
-    height: "52px"
-  call-board:
-    backgroundColor: "{colors.cobalt}"
-    textColor: "{colors.white}"
-    rounded: "{rounded.board}"
-    padding: "34px"
   comparison-table:
     backgroundColor: "{colors.white}"
     textColor: "{colors.ink}"
     rounded: "{rounded.surface}"
 ---
 
-# Design System: Shop calls, sorted.
+# Design system: Buying companion
 
-## Overview
+## Overview and locked scope
 
-**Creative North Star: "The Cobalt Call Board"**
+A buyer visits shops, gathers offers, and decides what to buy. The companion keeps those details together, shows how each product fits the buyer's needs and budget, highlights unanswered questions, and helps the buyer prepare to bargain. The comparison is the core working screen.
 
-The interface turns a buyer's comparison brief into something visible and active. It pairs an editorial, trustworthy reading voice with practical controls and structured data, so the experience feels like a clear consumer guide that has begun doing the legwork itself.
+Use PRODUCT.md as the detailed locked scope and IDEA_SCOPE.md as the original idea. PLAN.md contains older exclusions that conflict with PRODUCT.md; they must not remove the locked voice capture, shop suggestions, visit order, or bargaining guidance from this design. This document describes the intended V1; it does not claim those screens have been built.
 
-The cobalt call board is the signature expression: a saturated working surface holding a slightly rotated yellow buying brief, an orderly white shop list, and a mint result card. Away from that board, generous paper space, thin rules, and crisp tables keep the product calm, factual, and easy to audit.
+Support two equal entry paths: prepare before visiting shops, or compare offers already collected. Include relevant guidance and questions, Google Maps shop suggestions and suggested visit order, typed notes, voice notes, photos/screenshots, buyer confirmation, comparison, supported bargaining guidance, and recording the purchase. Save and reopen the current purchase. Keep one current purchase per account.
 
-**Key Characteristics:**
-- Editorial headlines paired with direct, compact interface text.
-- Cobalt work surfaces with yellow input notes and mint confirmed outcomes.
-- Open page rhythm that tightens only where comparison requires density.
-- Realistic sample data, visible gaps, and plain labels that preserve buyer control.
-- Motion reserved for the active call waveform and small interaction feedback.
+The buyer asks questions, checks products physically, contacts shops, bargains, and buys. The app does not call shops, negotiate on the buyer's behalf, process purchases, or provide after-purchase help. Shop listings do not establish stock or prices. Do not promise a discount, latest models, or live market prices. Sharing and a history dashboard remain outside required V1.
 
-## Colors
+## First screen: exact words and availability
 
-The palette feels like a useful consumer brief: dark ink and cool paper establish trust, while cobalt signals active work, yellow marks the buyer's input, and mint marks confirmed value.
+- Name: **Buying companion**.
+- Outcome headline: **Choose a product that fits your needs and budget.**
+- Supporting words: **Keep shop offers together, see what needs checking, and prepare to bargain before you buy.**
+- Entry actions: **Prepare for shop visits** and **Compare existing offers**. Show equally prominent white choice panels with clear labels. Neither entry path is selected initially; the buyer chooses one, revealing one cobalt **Continue** button. Each panel labels a real native radio input in a shared group, with a fieldset and visible legend. Keep the radio controls accessible beneath the panel styling: Tab reaches the group, arrow keys change the choice, and screen readers announce each label and selected state. Do not replace the inputs with clickable containers or hide them with `display: none`.
+- Returning-buyer action: **Reopen my purchase**; secondary account link: **Sign in**.
+- Boundary note: **You visit the shops and buy directly. Your companion helps you prepare and compare.**
 
-### Primary
-- **Working Cobalt** (`cobalt`): Main actions, active calling states, the call board, and the closing action panel.
-- **Deep Cobalt** (`cobalt-deep`): Hovered primary actions and small supporting accents that need stronger contrast.
+The delivery format is a phone-friendly website. No store-download button or “Get the mobile app” wording. README.md records only account creation and saving/editing one purchase as implemented, with no production publication of that milestone. Until both entry flows work at the deployed destination, the public landing page shows **Preview the buying companion**, leading to a clearly labelled **Design preview — fictional offers; these flows are not available yet**. Preview choices must never imply a working service. A real entry action is enabled only when its destination works. Do not invent a waitlist or download availability.
 
-### Secondary
-- **Brief Yellow** (`sun`): The buyer's request note, keyboard focus, text selection, and the light call-to-action button.
-- **Result Mint** (`mint`): Confirmed outcomes, favorable comparison cells, and agreed catalog states.
+If illustrating the product, use a straight, readable comparison preview with two fictional offers and a visible unanswered question. Label it **Example comparison — fictional data**. No call progress, approved-shop language, waveforms, simulated outreach, or future-dashboard framing.
 
-### Neutral
-- **Buyer Ink** (`ink`): Primary text, strong borders, and the comparison table header.
-- **Quiet Ink** (`ink-soft`): Explanations, metadata, secondary navigation, and supporting table text.
-- **Cool Paper** (`paper`): The main page canvas.
-- **Reading White** (`white`): Content surfaces, the shop list, and the comparison table.
-- **Ledger Line** (`line`): Structural dividers that explain sequences, rows, and groups.
-- **Missing Answer Wash** (`missing-soft`): Background for unavailable information.
-- **Missing Answer Ink** (`missing-ink`): Text for unavailable information.
+## Visual direction
 
-### Named Rules
+A clear buying worksheet: cool paper, dark text, cobalt actions, yellow buyer requirements, and white evidence rows. Keep prices, inclusions, source references, and missing answers near one another. The interface should be comfortable to scan while standing in a shop. Decoration must not compete with an offer or its caveats.
 
-**The Working Blue Rule.** Cobalt belongs to work in progress and strong actions; it should remain concentrated enough that the call board is the first screen's visual anchor.
+Use Arial throughout, with the generic sans-serif fallback only if unavailable. No second family for headings, numbers, controls, or previews. The hierarchy is 32px headline, 24px screen/section title, 16px body/inputs, and 14px labels/metadata. Weights are 400 and 700. Use tabular numerals for prices. Do not shrink essential warnings below 14px.
 
-**The Evidence Color Rule.** Yellow identifies what the buyer supplied, mint identifies a confirmed or favorable result, and the missing-answer pair identifies a gap. Do not swap these meanings for decoration.
+### Colour meanings and evidence labels
 
-## Typography
+- Ink and white/paper: primary text and ordinary evidence surfaces. Quiet Ink: supporting text.
+- Cobalt: actions, selected controls, and keyboard focus; it does not indicate trust or active contact with a shop. Deep Cobalt: hover.
+- Yellow: buyer-entered needs/budget and unresolved review prompts; always include explanatory text.
+- Mint: a limited suitability highlight, accompanied by **Fits your stated needs** and the reasons. It never means a claim was verified or a saving is guaranteed.
+- Missing Answer Wash/Ink: **Not provided** for absent data; **Needs checking** for unclear or conflicting data. These are distinct labels even if they share a colour.
+- Ledger Line: row/group boundaries, not small-text colour.
 
-**Display Font:** Georgia (with Times New Roman and serif fallbacks)  
-**Body Font:** Avenir Next (with Avenir, Segoe UI, and sans-serif fallbacks)
+Keep three independent facts visible, including on comparison cells:
 
-**Character:** Georgia gives promises and section headings the familiar authority of a buying guide. Avenir Next keeps controls, explanations, shop states, and comparison data contemporary and quick to scan.
+| Meaning | Exact label | Presentation |
+| --- | --- | --- |
+| Buyer checked what the app captured | **Buyer-confirmed transcription** | Neutral outlined label, beside the source and confirmation time. Confirms the capture matches the buyer's account, not the truth of a claim. |
+| Shop statement lacks independent evidence | **Shopkeeper said; not verified** | Neutral text label beside the relevant statement, even after buyer confirmation. |
+| Product suitability | **Fits your stated needs**, **Does not fit your stated needs**, or **Fit needs checking** | Mint only for the first; plain text or missing-answer wash for the others, with reasons and unresolved conditions. |
 
-### Hierarchy
-- **Display** (700, fluid display scale, 0.98 line-height): Reserved for the first-screen promise, with tight tracking and compact line spacing.
-- **Headline** (700, fluid section scale, 1.06 line-height): Used for major section statements and the closing message.
-- **Title** (700, compact title scale, 1.55 line-height): Used for process steps and similarly weighted subheads.
-- **Body** (400, base scale, 1.55 line-height): Used for explanations and comparison content; lead paragraphs may loosen to 1.7.
-- **Label** (750, compact label scale, 0.04em tracking): Used for board labels, statuses, and compact metadata.
+External product facts require an identifiable source and date. A source link is not a blanket verification badge. Show quote date and validity separately; no validity date means **Validity not provided**. Never substitute colour, a tick, “approved,” or “best deal” for evidence. The same offer can have buyer-confirmed transcription, unverified claims, and uncertain fit at once.
 
-### Named Rules
+## Layout, spacing, and interaction
 
-**The Two-Voice Rule.** Georgia makes the promise; the sans-serif system voice explains the mechanism and records the evidence.
+Desktop frame: maximum 1240px, with a 1176px inner measure. Forms and confirmation content: maximum 640px. Comparison can use the full inner width. Below 900px, stack columns. Below 600px, use 20px page gutters and full-width primary actions.
 
-## Layout
+Use the 8, 12, 16, 24, and 32px spacing scale. Landing-page sections use exactly 76px vertical padding on desktop and 32px below 600px. Working screens use 32px between major groups, 24px surface padding (16px on phones), 16px between fields, and 8px between a label and its help. There is no 110–120px section rule.
 
-The page uses a centered desktop frame up to 1240px, with most content aligned to a 1176px inner measure. The first screen is a two-column composition: the promise occupies the slightly narrower left column and the call board occupies the right. Later sections alternate between broad reading space and denser evidence, culminating in a full comparison table.
+Actions are at least 52px high, radius 12px, and horizontal padding 24px. Primary actions use white on cobalt; secondary actions use ink on white with a visible border. Hover darkens the primary; focus uses a 3px cobalt outline with a white separation so it remains visible on blue surfaces. Do not move buttons on hover. Other touch targets are at least 44px.
 
-Section spacing is generous, generally around 110-120px on desktop. Thin horizontal rules organize steps and control points without turning them into detached cards. At 900px the hero and control sections become single-column layouts. At 600px, outer gutters reduce to 20px, actions become full width, the call board recomposes its layers, and the comparison table keeps its useful width inside a clearly labelled horizontal scroller.
+Use 16px surface, 14px note, 6px status, and 28px preview-board radii. The preview board is optional and never replaces the real comparison. Thin rules group rows. No rotated evidence sheets, decorative sun, or layered call-board metaphor. A single soft surface shadow is enough: `0 12px 28px -20px rgba(20,36,51,0.3)`.
 
-**The Brief-to-Ledger Rule.** Start spacious while explaining the request and process, then tighten the layout when offers need row-by-row comparison.
+Navigation names the current purchase, offers a back action, and shows **Save status** and account access. Keep these available on phones. No history dashboard. A comparison table has row/column headers, ₹ amounts and units, a caption, and a labelled horizontal scroll region on phones: **Swipe sideways to compare offers**. Keep the specification column visible while scrolling; source details remain accessible per cell.
 
-## Elevation & Depth
+Motion is brief feedback for selection, upload, or save. Show real progress only when measurable; otherwise name the operation. Respect reduced motion. Announce loading, errors, and save outcomes to screen readers. Put errors beside fields and in a linked error summary. Support keyboard use, 200% zoom, and readable text contrast. Do not use colour alone for any state.
 
-The system is flat by default and introduces depth only where it explains a working layer. The call board, request note, shop list, result card, primary action, and comparison table use soft, low-spread shadows. Rotation on the yellow request and mint result adds a physical-note quality without making the page playful or messy.
+## Screens and states
 
-### Shadow Vocabulary
-- **Board lift** (`0 24px 55px -30px rgba(20, 36, 51, 0.45)`): Raises the complete call workflow above the paper canvas.
-- **Action lift** (`0 12px 24px -14px rgba(21, 91, 215, 0.85)`): Gives the primary action a compact cobalt glow; hover increases the lift.
-- **Paper lift** (`0 14px 28px -20px rgba(0, 0, 0, 0.5)`): Separates the buyer's brief from the board beneath it.
-- **Table lift** (`0 24px 54px -36px rgba(20, 36, 51, 0.55)`): Keeps the dense comparison readable as one contained object.
+### Paths
 
-**The Layer-With-Meaning Rule.** Use shadow or rotation only for a sheet, board, or action that sits above another surface in the user's mental model.
+**Prepare:** Entry → Needs and budget → Guidance and questions → Optional shops and visit order → Capture → Confirm → Compare → Bargaining guidance → Record purchase.
 
-## Shapes
+**Existing offers:** Entry → Needs and budget → Capture → Confirm → Compare → Bargaining guidance → Record purchase. Skip education, location, and route planning. Add each shop directly.
 
-Large working panels use generous 28px corners, ordinary containers use 14-16px corners, actions use 12px corners, and compact statuses use 6px corners. Pills are reserved for small standalone labels and the outlined header action. Circular forms identify step numbers, waiting states, and the board's oversized decorative sun.
+Both paths repeat Capture → Confirm for additional shops. Sign in/create account when saving the first shop's information, after useful guidance where applicable. Saved current-purchase information is available through **Reopen my purchase**. The following are required behaviours for implementation, not assertions about today's app.
 
-Borders are thin and structural. They divide rows, sequences, and actions; they are not ornamental frames. The two slightly rotated evidence notes are the only deliberately irregular silhouettes.
+| Screen | Empty / first use | Loading | Error / recovery | Done / next action | What survives failure |
+| --- | --- | --- | --- | --- | --- |
+| Entry / reopen | Show the exact promise and two initially unselected path choices; the buyer selects one, then **Continue**. | **Opening your purchase…** when reopening. | **Couldn't open your purchase. Try again.** Offer **Retry**; do not replace the saved purchase with a blank one. | Open the chosen path or last saved purchase; show where to resume. | Existing saved purchase and chosen path. |
+| Needs and budget, both paths | Label product, purpose/situation, budget in ₹, and requirements. Example text is a placeholder, not an answer. Action: **Continue**. | **Preparing your questions…** on the prepare path; **Opening offer capture…** on the existing-offer path. | Explain the specific invalid field or generation failure. **Try again** keeps answers editable. | Prepare path: **Review questions**. Existing-offer path: **Add first shop**. | Entered needs, budget, requirements, and path. |
+| Guidance and questions, prepare only | If no guidance yet, explain that questions will use the stated needs; **Prepare questions**. | **Preparing questions for your shop visits…**; show needs, not fabricated questions. | **Couldn't prepare your questions.** Offer **Retry** and keep buyer-written questions. | Show relevant specifications, sourced guidance, a consistent question list, and **Add a question**. Next: **Plan visits** or **Add a shop directly**. | Needs and all buyer-added or previously generated questions. |
+| Shops and visit order, optional prepare step | Ask for PIN code/location only here. **Find shops**; **Skip and add a shop** remains visible. | **Finding shops…** or **Planning visit order…**; retain selections. | **Couldn't load shop suggestions.** Retry or add a shop manually. No results is a separate state: change location or add a shop. | Show Google Maps source, selected shops and suggested order, with **Listings do not confirm stock or prices**. Next: **Add an offer**. | Location input, selected shops, manual shop details, and last successful order. |
+| Capture, both paths | Choose/add shop with optional contact number. Offer **Write a note**, **Add voice note**, **Add photo or screenshot**; show unanswered checklist items. | Each file has its own upload/processing state. **Reading your note…** must not imply it is confirmed. | Failed upload: **Retry upload**. Unreadable file: **Replace file** or **Write a note**. Permission denied: explain how to use another capture method. | Show original sources and **Review captured details**; keep additional attachments available. | Typed notes, completed uploads, and saved offers. Keep failed file selection in the current session when possible; say when it must be reselected after reload. |
+| Sign in / create account, at first shop save | **Save your shop information to reopen it later.** Email/password fields; switch between **Create account** and **Sign in**. | **Signing in…**; prevent duplicate submission. | Show an actionable account error; **Try again**. Never clear offer drafts on auth failure. | Return to the interrupted confirmation/save step. | Notes and upload references in the draft; never store passwords. Account failure does not erase earlier saved data. |
+| Confirm captured details, each shop | If nothing readable, **Add a clearer source** or **Enter details**. Otherwise review model, specifications, price, quote date, validity and included costs beside their sources. | **Preparing details for review…**; source remains readable. | Flag individual unclear/conflicting fields **Needs checking**; allow edits or **Mark unknown**. A save failure offers **Retry save**. | **Confirm and save offer** adds buyer-confirmation labels. Next: **Add another shop** or **Compare offers**. Unsupported claims stay unverified. | Original sources, buyer edits, unknown markers, and previously saved offers. |
+| Comparison, core product | No offers: **Add first shop**. One offer: show fit/gaps and **Add another shop**; no invented second offer. | **Updating your comparison…**; keep previous result visible and labelled **Updating — earlier comparison**. | **Couldn't update the comparison.** Retry; previous comparison stays labelled as earlier. Missing critical data: **Check these details** before final recommendation. | Compare brands/models, specs, total-cost components, quote dates, warranty, installation, service, availability and fit. Explain differences. Next: **Check missing details**, **Add another shop**, or **Review bargaining guidance** when supported. If none fit: **No offer fits your stated needs** and **Add another shop**. | Confirmed offers, sources, requirements, and last successful comparison. |
+| Bargaining guidance | Without sufficient comparable, current evidence: **Not enough evidence to suggest a bargaining price.** List missing costs/specs or expired/undated validity; **Check quote details**. | **Preparing bargaining guidance…**; show supporting offers. | **Couldn't prepare bargaining guidance.** Retry or return to comparison. Never fill in a target as a fallback. | Give a suggested target only when justified, its supporting comparable offers, assumptions and suggested questions. **A suggested price is not a guaranteed discount.** Next: **Record purchase** after the buyer buys, or **Back to comparison**. | Offers and last successful guidance; label stale guidance after inputs change. |
+| Record purchase | Ask what was bought, shop, exact model and final price paid; no purchase inferred from a recommendation. **Save purchase details**. | **Saving purchase details…**; disable duplicate saves. | **Couldn't save purchase details. Your changes are still here.** **Retry save**. | **Purchase details saved.** Show the buyer's recorded choice and price. Next: **Reopen my purchase** or edit a recording mistake. | Entered purchase details in the draft and last saved record; no checkout or after-purchase workflow. |
+| Current purchase / save and reopen | With no saved data, **Start a purchase**. Do not show an empty screen while saved data is loading. | **Loading saved information…** or **Saving changes…**. | **Changes not saved** or **Couldn't load saved information**. **Retry**; retain edits and show last successful save time. | **Saved** only after server confirmation. Resume questions, capture, comparison or recorded purchase at the last saved step; **Edit purchase** updates this one purchase. | Server-saved needs, shops, source attachments, confirmed offers and purchase record. Unsaved edits stay clearly marked. |
 
-## Components
+### Save and recovery rules
 
-### Buttons
-- **Shape:** Firm, gently rounded actions using the action radius and a minimum height of 52px.
-- **Primary:** White text on Working Cobalt with horizontal action padding and a compact blue lift.
-- **Hover / Focus:** Hover deepens the cobalt, raises the action by 2px, and increases its shadow. Keyboard focus uses a 3px Brief Yellow outline with a 4px offset.
-- **Light:** Buyer Ink on Brief Yellow, used only against a cobalt panel; hover lightens the yellow.
-- **Header action:** A compact outlined pill that fills with Buyer Ink on hover.
+Show **Not saved yet**, **Saving…**, **Saved**, or **Changes not saved** as text. A loading animation or successful upload is not proof the whole offer was saved. Display the last successful save time.
 
-### Chips
-- **Style:** Small pills or compact rounded labels with dense sans-serif text. Outlined pills label sample data; filled mint and missing-answer chips carry semantic status.
-- **State:** Status colors keep their fixed meanings from the Evidence Color Rule.
+Keep a local recoverable draft of non-password inputs before first save and during failed saves; disclose **Draft on this device; not saved to your account**. Local drafts do not imply cross-device recovery. Browser-selected files and unuploaded recordings are not guaranteed to survive closing the browser: warn before leaving when relevant and explain what needs adding again. Completed sources and confirmed offers belong to the account once the server confirms saving. Keep original sources attached when correcting captured details.
 
-### Cards / Containers
-- **Corner Style:** Large for the cobalt board, medium for its internal evidence sheets and list.
-- **Background:** Cobalt for active work, yellow for the request, white for shop answers, and mint for confirmed value.
-- **Shadow Strategy:** Each nested layer receives less visual weight than the board that contains it.
-- **Border:** Internal shop rows use quiet dividers instead of individual card outlines.
-- **Internal Padding:** 34px on the desktop call board, reducing to 20px on small screens; inner sheets use 16-22px.
+Retry only failed items; do not duplicate successful offers or attachments. Never clear stored information because a load failed. After changed needs/offers, label earlier comparisons and guidance as out of date until recomputed. Critical missing details block a final recommendation, but buyers can still read collected information and add/check another offer.
 
-### Navigation
-- **Style:** A three-part desktop header balances the wordmark, two quiet anchor links, and an outlined action. Navigation text uses compact, semibold sans-serif type; hover changes the links to cobalt.
-- **Mobile:** The middle navigation links disappear below 900px, leaving the brand and action visible.
+## Component references
 
-### Call Board
+These linked references specify behaviour and structure to borrow. Keep this document's palette, Arial, sizing and radii rather than copying a reference site's identity. No new component library is required.
 
-The signature call board shows one request becoming comparable shop answers. Keep the buyer's brief, shop progress, and early result visibly connected inside one cobalt field. Only the active shop row animates, using four short waveform bars; reduced-motion settings collapse that animation.
+| Key component | Reference | Take exactly | Ignore exactly |
+| --- | --- | --- | --- |
+| Entry path choices | [GOV.UK radios](https://design-system.service.gov.uk/components/radios/) | Visible group label and persistent help for each path. No initial selection: the buyer chooses one. Retain real native radio inputs in a shared group beneath the touchable panel styling, with keyboard navigation and screen-reader labels and selected states. | Government wording, font and radio dimensions; use large touchable choice panels. |
+| Buttons | [GOV.UK button](https://design-system.service.gov.uk/components/button/) | Action-specific labels, primary/secondary hierarchy and duplicate-submit prevention. | Green palette, square silhouette and reference heights; use 52px/cobalt/12px here. |
+| Needs form and confirmation rows | [GOV.UK summary list](https://design-system.service.gov.uk/components/summary-list/) | Aligned label/value rows with explicit change actions. Add source and uncertainty directly beneath each captured value. | Long administrative layouts and treating every row as settled fact. |
+| Question list and visit-order list | [GOV.UK task list](https://design-system.service.gov.uk/components/task-list/) | Scanable rows, named next action and visible text state. | “Completed” as a proxy for verified claims or shop approval. Number visit order without implying stock. |
+| Capture/upload control | [GOV.UK file upload](https://design-system.service.gov.uk/components/file-upload/) | Labelled file picker and adjacent help/error; preserve keyboard access. Add per-file status and retry. | Desktop-only drop-area emphasis and implying upload equals successful extraction. Voice capture uses explicit start/stop controls and text duration, never call waveforms. |
+| Evidence and status labels | [GOV.UK tag](https://design-system.service.gov.uk/components/tag/) | Short readable text states with consistent styling. | Reference colour meanings and badge-only communication; retain the three independent meanings above. |
+| Comparison | [GOV.UK table](https://design-system.service.gov.uk/components/table/) | Caption, real header relationships, row rules and aligned numeric amounts. | Narrow simple-table assumption; retain full comparison width, phone scrolling, source access and visible gaps. |
+| Recommendation, bargaining and saved-record surface | [GOV.UK summary list](https://design-system.service.gov.uk/components/summary-list/) | Separate named facts and change actions; use distinct rows for reasons, supporting quotes, limitations and price. | A generic success panel that makes uncertain guidance appear approved. |
+| Errors and recovery | [GOV.UK error summary](https://design-system.service.gov.uk/components/error-summary/) | Linked error summary plus field-level messages and focus on the error after failed submission. | Generic error wording and clearing entered data. |
+| Purchase navigation | [GOV.UK task list](https://design-system.service.gov.uk/components/task-list/) | Labelled stages and readable progress with a clear resume action. | Mandatory linear completion: existing-offer buyers bypass preparation and routing. |
 
-### Comparison Table
+## Review before implementing
 
-The table uses an ink header, a white body, tabular price numerals, and thin row rules. Favorable results may receive a pale mint cell and a mint chip. Missing information must appear as a warm missing-answer label reading “Not provided”; never fill or visually hide an absent answer.
+Check both entry paths reach capture, confirmation and the same real comparison. Check one offer, missing inclusions, unreadable upload, conflicting model details, expired quotes, no suitable product, failed sign-in, failed save, failed reload and adding another shop. In every case the next action and retained information must be visible.
 
-## Do's and Don'ts
+Use fictional sample data only under an explicit example label. A recommendation must explain fit, not crown the lowest quoted price. Compare known total costs only when inclusions are known; unknown installation or delivery cannot become ₹0. Bargaining guidance must not equate different models merely because some specifications match.
 
-### Do:
-- **Do** make the cobalt call board the memorable mechanism when showing how a request moves through approved shops.
-- **Do** keep sample content realistic and visibly labelled as illustrative or fictional.
-- **Do** use spacing and thin rules to show relationships before adding another container.
-- **Do** keep approval, missing information, units, and price inclusions visible beside the relevant evidence.
-- **Do** preserve a useful table width on mobile and explain that it scrolls sideways.
-
-### Don't:
-- **Don't** use yellow, mint, or missing-answer colors as interchangeable decoration; each color has a fixed information role.
-- **Don't** turn every section or process step into a floating card.
-- **Don't** add continuous ambient motion; motion belongs to the active call waveform and brief interaction feedback.
-- **Don't** invent a missing shop answer or imply that the assistant made the buying decision.
-
-## Mobile-app landing-page update
-
-Preserve cobalt, yellow, mint, and editorial typography. Replace the desktop call board with an accessible HTML phone preview, explicitly labelled as a concept with fictional data. The primary action is Get the mobile app, leading to the availability section. Keep the comparison table as the example of a planned companion dashboard.
+This revision changes the design instructions only. Browser checks and deployment belong to the implementation step; current screens are not evidence that this full design already works.

@@ -12,7 +12,7 @@ npx convex dev --once
 npm run dev
 ```
 
-Open http://127.0.0.1:5173/app.html. The existing landing page remains at `/`.
+Open http://127.0.0.1:5173/app.html. The rebuilt landing page is at `/`; it presents a clearly labelled design preview of the buying companion.
 
 The frontend reads `CONVEX_URL` from the ignored `.env.local` file. Deployment builds use the production URL supplied by Convex static hosting. The development backend has Convex Auth keys configured; another deployment needs its own `JWT_PRIVATE_KEY` and `JWKS` before sign-in will work. Never commit keys or environment files.
 
@@ -44,3 +44,9 @@ The frontend reads `CONVEX_URL` from the ignored `.env.local` file. Deployment b
 ## Milestone 1 visual brief
 
 The purchase screen is a task-focused extension of the existing visual system: white form on Cool Paper, Buyer Ink text, Working Cobalt actions, Georgia headings, and Avenir/system sans for fields. Labels and fields stack on phones; the desktop form stays narrow. The key states are sign-in, first purchase, saving, saved purchase, editing, and errors. DESIGN.md and the original landing-page design remain unchanged.
+
+## Landing-page preview
+
+The landing page follows DESIGN.md: one Arial font family, the buying-companion promise, two initially unselected native radio choices, and a fictional offer comparison with sources and visible missing answers. **Continue** opens an explanation of the selected preview path; it does not start a working buying flow or save data. Source links open the example notes. There is no download button or waitlist form.
+
+The landing rebuild was checked in Chrome at 1440, 780, 390 and 320px widths, including keyboard radio selection, both preview paths, source links, and horizontal comparison scrolling without page overflow. The existing automated checks passed. This change has not been deployed.
