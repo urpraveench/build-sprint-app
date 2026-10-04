@@ -6,7 +6,7 @@ Help a buyer prepare for shop visits, collect comparable notes, and choose an op
 
 The first user is Praveen, comparing kitchen chimneys. The flow can support other household appliances, but each purchase compares one item type. The user visits shops and asks the questions themselves.
 
-This plan replaces the calling-based v1. IDEA_SCOPE.md still describes the original idea; use this plan and the updated brief for v1.
+This plan replaces the calling-based v1 and follows the updated buying companion scope in IDEA_SCOPE.md.
 
 ## Core flow
 

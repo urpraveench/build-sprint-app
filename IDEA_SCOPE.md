@@ -1,28 +1,91 @@
 # IDEA LOCK · Build Sprint
 
-The idea, in one line: I want to build a voice assistant so that it can call multiple shopkeepers and enquire about the product details. It can give me a summarized form of data about different shopkeepers and their offerings, so that it will be beneficial for me to come to a decision point for purchasing. Also, if needed, I can use the same voice agent for negotiation.
+## The idea
 
-Why me: I have enough experience to ask relevant questions when your looking for buy any product or service.
+A buying companion for one offline purchase: prepare the buyer with the questions that matter, capture notes from each shop, and compare the options against the buyer's needs.
+
+The direction changed because shopkeepers would not quote on the phone. The buyer visits shops themselves; v1 does not call shops.
+
+Why me: Praveen has experience asking relevant questions when buying products and can use a real kitchen-chimney purchase to test the flow.
 
 ## GOAL
-The one goal they hire it for: Time
-Delta 4: Today, in order to do this, you need to physically go there, talk about all these points, and note it down, then come and compare. Each visit costs you a minimum of half an hour. If you say 4 shops, if you just go there for 2 hours, your time and your commute time will all get wasted. With this new workflow, you are just sitting at home, and the agent will go and talk to you, summarize it to you properly, and make a decision faster.
-The sin it rides: Sloth
+
+Help the buyer make an informed choice without forgetting important questions or losing track of what each shop offered.
+
+The improvement: Before a visit, the buyer knows the three or four things that matter for their situation. During visits, they capture comparable details quickly. Afterwards, they can see differences and missing information in one place.
+
+The product helps with preparation and comparison. It does not remove the need to visit shops.
 
 ## USER
-The trigger: Not all products can be bought online. There are 10 such products that you have to go and buy offline. But offline scouting is too painful a task because of the time it takes, so people tend to look at online products by trusting the reviews and the photos that customers post.
-Today's path: Today, you have to dedicate some time for that. Go shop by shop and get the details. Keep a notebook, or somehow get these questions asked and note them down. Come back, compare, and do the analysis.
-Who they trust on this decision: The product summary and the comparison.
-Would they pay: Today there is nothing to pay for. A human goes physically and talks, or calls each shop and gets the details, with waiting time, and he needs to be there. I can pay around ₹500. Two chimney quotes I got were about ₹3,000 apart.
+
+The first user is Praveen, comparing kitchen chimneys. The flow can support other household appliances, with one item type per purchase.
+
+The trigger: The buyer is about to visit shops for a purchase and needs to understand what to ask, what is included in each price, and which option fits their budget and situation.
+
+Today's path: Ask different questions at different shops, keep scattered notes or photos, and try to remember the details when deciding.
+
+Who they trust: Their own shop notes and photos, a clear comparison, and an explanation that shows its evidence and uncertainty.
+
+Willingness to pay: Not validated for this revised idea. The earlier ₹500 estimate applied to the calling concept and is not an agreed price for this v1.
 
 ## PRODUCT
-Onboarding: The user just needs to know what kind of product he wants to purchase, and he gives the context data. Then the agent lists the vendors available, calls them, gets the data, summarizes it, and gives it to him.
-The core loop: It asks the user what kind of product he wants to buy, then lists the people in that location who sell that product. It asks the list of questions the user wants to ask, and the AI can also suggest other questions based on the context the user provides. Then it calls the shops one by one, asks these questions, gets the answers, summarizes them, and gives them to the user for decision-making.
-Coming back: The same voice agent can be used for further negotiation.
-The AI-first part: Onboarding is through AI. Engagement is through AI.
 
-## MARKET
-Tailwinds: There is a lot of funding going into voice agents in the market today.
-Competitors: Simple AI and Google Ask for Me (only in the USA), neither shown covering Indian shops. Also Justdial, and walking around yourself.
-Size and fit: 20 friends
+### Before the shop
 
+The user enters the item, budget, and situation, such as intended use, space constraints, and priorities.
+
+AI lists the three or four things that matter most, explains them in plain words, and gives a short set of questions to ask every shop.
+
+### In the shop
+
+The user adds a quick note per shop with:
+- Shop name
+- Model
+- Price
+- Warranty
+- What is included
+- Answers about the important buying factors and any known extra costs
+
+The user can type details or attach a price-tag photo. Details read from a photo must be shown for confirmation or correction. Keep the original photo available for checking.
+
+Incomplete notes can be saved and edited later.
+
+### After the visits
+
+Show a side-by-side comparison table with one column per shop option. Compare model, price, warranty, inclusions, known extra costs, and the buying factors relevant to the user.
+
+Explain which option fits the user's budget and situation, using the recorded details. If missing information could change the choice, give a conditional assessment and explain what to ask next.
+
+Coming back: The buyer can reopen the same purchase, add or correct shop details, and refresh the comparison.
+
+The AI part: Prepare the checklist, read confirmed details from photos, and explain the comparison. Shop information comes from the user's notes and photos.
+
+## TRUST RULES
+
+- Missing information is flagged, never guessed.
+- Show **Not provided** for missing details and **Needs checking** for unclear or conflicting details.
+- Distinguish general AI advice from recorded shop information.
+- Keep shop claims labelled as claims, rather than verified facts.
+- Do not treat a listed price as a complete total when inclusions or extra costs are unknown.
+- Do not invent unreadable photo details or silently overwrite conflicting notes.
+- Explain recommendations using the buyer's stated needs and available evidence.
+
+## V1 BOUNDARIES
+
+V1 covers one purchase: preparation, typed or photo-based shop notes, a comparison table, and an explanation of fit. The experience must work comfortably on a phone during visits.
+
+Shop calling, voice agents, shop discovery, negotiation, WhatsApp catalog requests, checkout, and purchasing are outside v1. A separate history dashboard and managing several purchases at once are also outside this first build.
+
+## VALIDATION
+
+Test the complete flow with Praveen's real kitchen-chimney purchase.
+
+Check whether the checklist helps him ask useful, consistent questions; whether notes are quick enough to capture in a shop; and whether the comparison helps him decide while exposing gaps.
+
+Other testers, willingness to pay, and demand for this revised idea remain unvalidated. Existing alternatives include paper notes, phone notes, photos, spreadsheets, and general AI chat; no competitor research has been completed for this revised idea.
+
+## BUILD CONSTRAINTS
+
+Use Codex for code, GitHub for source control, and Convex for the database, backend, sign-in, photo storage, and static hosting. Any additional service needed for AI or photo reading requires the user's approval before use.
+
+PLAN.md gives the numbered milestones for building this scope.
