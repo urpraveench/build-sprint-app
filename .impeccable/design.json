@@ -1,0 +1,134 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-03T10:40:24+05:30",
+  "title": "Design System: Shop calls, sorted.",
+  "extensions": {
+    "colorMeta": {
+      "ink": { "role": "neutral", "displayName": "Buyer Ink", "canonical": "#142433", "tonalRamp": ["oklch(15% 0.035 245)", "oklch(25% 0.035 245)", "oklch(35% 0.035 245)", "oklch(47% 0.035 245)", "oklch(60% 0.030 245)", "oklch(72% 0.025 245)", "oklch(84% 0.018 245)", "oklch(95% 0.008 245)"] },
+      "ink-soft": { "role": "neutral", "displayName": "Quiet Ink", "canonical": "#506273", "tonalRamp": ["oklch(15% 0.025 245)", "oklch(25% 0.025 245)", "oklch(35% 0.025 245)", "oklch(47% 0.025 245)", "oklch(60% 0.022 245)", "oklch(72% 0.018 245)", "oklch(84% 0.012 245)", "oklch(95% 0.006 245)"] },
+      "cobalt": { "role": "primary", "displayName": "Working Cobalt", "canonical": "#155bd7", "tonalRamp": ["oklch(15% 0.13 260)", "oklch(25% 0.16 260)", "oklch(35% 0.19 260)", "oklch(47% 0.21 260)", "oklch(60% 0.18 260)", "oklch(72% 0.13 260)", "oklch(84% 0.075 260)", "oklch(95% 0.025 260)"] },
+      "cobalt-deep": { "role": "primary", "displayName": "Deep Cobalt", "canonical": "#0a3991", "tonalRamp": ["oklch(15% 0.11 260)", "oklch(25% 0.14 260)", "oklch(35% 0.17 260)", "oklch(47% 0.18 260)", "oklch(60% 0.15 260)", "oklch(72% 0.11 260)", "oklch(84% 0.065 260)", "oklch(95% 0.022 260)"] },
+      "paper": { "role": "neutral", "displayName": "Cool Paper", "canonical": "#f1f5f9", "tonalRamp": ["oklch(15% 0.012 245)", "oklch(25% 0.012 245)", "oklch(35% 0.012 245)", "oklch(47% 0.011 245)", "oklch(60% 0.010 245)", "oklch(72% 0.009 245)", "oklch(84% 0.008 245)", "oklch(95% 0.006 245)"] },
+      "white": { "role": "neutral", "displayName": "Reading White", "canonical": "#ffffff", "tonalRamp": ["oklch(15% 0 0)", "oklch(25% 0 0)", "oklch(35% 0 0)", "oklch(47% 0 0)", "oklch(60% 0 0)", "oklch(72% 0 0)", "oklch(84% 0 0)", "oklch(95% 0 0)"] },
+      "sun": { "role": "secondary", "displayName": "Brief Yellow", "canonical": "#ffcc4a", "tonalRamp": ["oklch(15% 0.07 85)", "oklch(25% 0.10 85)", "oklch(35% 0.13 85)", "oklch(47% 0.16 85)", "oklch(60% 0.17 85)", "oklch(72% 0.15 85)", "oklch(84% 0.10 85)", "oklch(95% 0.035 85)"] },
+      "mint": { "role": "secondary", "displayName": "Result Mint", "canonical": "#c9f0df", "tonalRamp": ["oklch(15% 0.045 160)", "oklch(25% 0.060 160)", "oklch(35% 0.075 160)", "oklch(47% 0.085 160)", "oklch(60% 0.080 160)", "oklch(72% 0.065 160)", "oklch(84% 0.045 160)", "oklch(95% 0.018 160)"] },
+      "line": { "role": "neutral", "displayName": "Ledger Line", "canonical": "#ccd7e2", "tonalRamp": ["oklch(15% 0.018 245)", "oklch(25% 0.018 245)", "oklch(35% 0.018 245)", "oklch(47% 0.017 245)", "oklch(60% 0.015 245)", "oklch(72% 0.013 245)", "oklch(84% 0.010 245)", "oklch(95% 0.004 245)"] },
+      "missing-soft": { "role": "tertiary", "displayName": "Missing Answer Wash", "canonical": "#fff0ec", "tonalRamp": ["oklch(15% 0.045 35)", "oklch(25% 0.055 35)", "oklch(35% 0.065 35)", "oklch(47% 0.070 35)", "oklch(60% 0.060 35)", "oklch(72% 0.045 35)", "oklch(84% 0.028 35)", "oklch(95% 0.012 35)"] },
+      "missing-ink": { "role": "tertiary", "displayName": "Missing Answer Ink", "canonical": "#a43c24", "tonalRamp": ["oklch(15% 0.075 35)", "oklch(25% 0.105 35)", "oklch(35% 0.130 35)", "oklch(47% 0.145 35)", "oklch(60% 0.120 35)", "oklch(72% 0.085 35)", "oklch(84% 0.050 35)", "oklch(95% 0.018 35)"] }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "The first-screen promise only." },
+      "headline": { "displayName": "Headline", "purpose": "Major section statements and the close." },
+      "title": { "displayName": "Title", "purpose": "Process steps and weighted subheads." },
+      "body": { "displayName": "Body", "purpose": "Explanations, controls, and comparison content." },
+      "label": { "displayName": "Label", "purpose": "Board labels, statuses, and compact metadata." }
+    },
+    "shadows": [
+      { "name": "board-lift", "value": "0 24px 55px -30px rgba(20, 36, 51, 0.45)", "purpose": "Raises the complete call workflow above the paper canvas." },
+      { "name": "action-lift", "value": "0 12px 24px -14px rgba(21, 91, 215, 0.85)", "purpose": "Gives the primary action a compact cobalt glow." },
+      { "name": "paper-lift", "value": "0 14px 28px -20px rgba(0, 0, 0, 0.5)", "purpose": "Separates the buyer's brief from the board." },
+      { "name": "table-lift", "value": "0 24px 54px -36px rgba(20, 36, 51, 0.55)", "purpose": "Contains the comparison as one readable object." }
+    ],
+    "motion": [
+      { "name": "interaction", "value": "180ms ease", "purpose": "Button movement, background, and shadow feedback." },
+      { "name": "active-call", "value": "900ms ease-in-out infinite alternate", "purpose": "Four-bar waveform for the shop currently being called." }
+    ],
+    "breakpoints": [
+      { "name": "stack", "value": "900px" },
+      { "name": "mobile", "value": "600px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The main action on paper or white surfaces.",
+      "html": "<a class=\"ds-button-primary\" href=\"#\">See a sample comparison</a>",
+      "css": ".ds-button-primary { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 0 24px; border-radius: 12px; background: var(--blue, #155bd7); color: var(--white, #ffffff); box-shadow: 0 12px 24px -14px rgba(21, 91, 215, 0.85); font: 750 1rem/1.55 'Avenir Next', Avenir, 'Segoe UI', sans-serif; text-decoration: none; transition: transform 180ms ease, box-shadow 180ms ease, background 180ms ease; } .ds-button-primary:hover { background: var(--blue-dark, #0a3991); box-shadow: 0 17px 26px -14px rgba(10, 57, 145, 0.9); transform: translateY(-2px); } .ds-button-primary:focus-visible { outline: 3px solid var(--sun, #ffcc4a); outline-offset: 4px; } .ds-button-primary:active { transform: translateY(0); }"
+    },
+    {
+      "name": "Light Button",
+      "kind": "button",
+      "refersTo": "button-light",
+      "description": "A yellow action used only on a cobalt panel.",
+      "html": "<a class=\"ds-button-light\" href=\"#\">Review the example again</a>",
+      "css": ".ds-button-light { display: inline-flex; align-items: center; justify-content: center; min-height: 52px; padding: 0 24px; border-radius: 12px; background: var(--sun, #ffcc4a); color: var(--ink, #142433); font: 750 1rem/1.55 'Avenir Next', Avenir, 'Segoe UI', sans-serif; text-decoration: none; transition: transform 180ms ease, background 180ms ease; } .ds-button-light:hover { background: #ffdc7a; transform: translateY(-2px); } .ds-button-light:focus-visible { outline: 3px solid var(--white, #ffffff); outline-offset: 4px; } .ds-button-light:active { transform: translateY(0); }"
+    },
+    {
+      "name": "Header Navigation",
+      "kind": "nav",
+      "description": "Quiet anchor links balanced by a compact outlined action.",
+      "html": "<nav class=\"ds-nav\" aria-label=\"Main navigation\"><a href=\"#\">How it works</a><a href=\"#\">Example</a><a class=\"ds-nav-action\" href=\"#\">See a comparison</a></nav>",
+      "css": ".ds-nav { display: flex; align-items: center; gap: 28px; color: var(--ink-soft, #506273); font: 600 0.92rem/1.55 'Avenir Next', Avenir, 'Segoe UI', sans-serif; } .ds-nav a { color: inherit; text-decoration: none; } .ds-nav > a:hover { color: var(--blue, #155bd7); } .ds-nav a:focus-visible { outline: 3px solid var(--sun, #ffcc4a); outline-offset: 4px; } .ds-nav .ds-nav-action { margin-left: 8px; padding: 10px 18px; border: 1px solid var(--ink, #142433); border-radius: 999px; color: var(--ink, #142433); font-size: 0.9rem; font-weight: 700; } .ds-nav .ds-nav-action:hover { background: var(--ink, #142433); color: var(--white, #ffffff); }"
+    },
+    {
+      "name": "Sample Data Chip",
+      "kind": "chip",
+      "description": "A neutral outlined pill that labels fictional evidence.",
+      "html": "<span class=\"ds-sample-chip\">Sample data</span>",
+      "css": ".ds-sample-chip { display: inline-block; padding: 9px 14px; border: 1px solid var(--ink, #142433); border-radius: 999px; color: var(--ink, #142433); font: 750 0.8rem/1.55 'Avenir Next', Avenir, 'Segoe UI', sans-serif; } .ds-sample-chip:hover { background: var(--white, #ffffff); } .ds-sample-chip:focus-visible { outline: 3px solid var(--sun, #ffcc4a); outline-offset: 4px; }"
+    },
+    {
+      "name": "Missing Answer Chip",
+      "kind": "chip",
+      "description": "The fixed treatment for information a shop did not provide.",
+      "html": "<span class=\"ds-missing-chip\">Not provided</span>",
+      "css": ".ds-missing-chip { display: inline-block; padding: 4px 8px; border-radius: 6px; background: var(--danger-soft, #fff0ec); color: var(--danger, #a43c24); font: 700 0.78rem/1.55 'Avenir Next', Avenir, 'Segoe UI', sans-serif; }"
+    },
+    {
+      "name": "Buying Brief",
+      "kind": "card",
+      "description": "A slightly rotated yellow note that holds the buyer's request.",
+      "html": "<article class=\"ds-buying-brief\"><span>Your buying brief</span><strong>Kitchen chimney</strong><p>60 cm · low noise · easy maintenance<br>Indiranagar, Bengaluru</p></article>",
+      "css": ".ds-buying-brief { width: min(320px, 100%); padding: 20px 22px; border-radius: 14px; background: var(--sun, #ffcc4a); color: var(--ink, #142433); box-shadow: 0 14px 28px -20px rgba(0, 0, 0, 0.5); font-family: 'Avenir Next', Avenir, 'Segoe UI', sans-serif; transform: rotate(-1.5deg); } .ds-buying-brief span { font-size: 0.74rem; font-weight: 750; letter-spacing: 0.04em; } .ds-buying-brief strong { display: block; margin: 5px 0; font-size: 1.35rem; } .ds-buying-brief p { margin: 0; color: #364450; font-size: 0.85rem; line-height: 1.5; } .ds-buying-brief:hover { transform: rotate(-1.5deg) translateY(-2px); } .ds-buying-brief:focus-visible { outline: 3px solid var(--white, #ffffff); outline-offset: 4px; }"
+    },
+    {
+      "name": "Call Board",
+      "kind": "custom",
+      "refersTo": "call-board",
+      "description": "The signature cobalt work surface connecting the request, approved shops, and result.",
+      "html": "<section class=\"ds-call-board\"><div class=\"ds-call-label\">APPROVED SHOPS <b>3 OF 5</b></div><div class=\"ds-shop-row\"><span>HA</span><p><strong>Home Appliances</strong><small>Asking about warranty</small></p><i></i><i></i><i></i><i></i></div><div class=\"ds-result\"><small>ALREADY FOUND</small><strong>₹3,000</strong><span>difference between two example offers</span></div></section>",
+      "css": ".ds-call-board { position: relative; min-height: 280px; padding: 34px; overflow: hidden; border-radius: 28px; background: var(--blue, #155bd7); color: var(--white, #ffffff); box-shadow: 0 24px 55px -30px rgba(20, 36, 51, 0.45); font-family: 'Avenir Next', Avenir, 'Segoe UI', sans-serif; } .ds-call-label { display: flex; justify-content: space-between; padding: 18px 18px 12px; border-radius: 16px 16px 0 0; background: var(--white, #ffffff); color: var(--ink-soft, #506273); font-size: 0.74rem; font-weight: 750; letter-spacing: 0.04em; } .ds-shop-row { display: flex; align-items: center; gap: 12px; padding: 12px 18px 18px; border-radius: 0 0 16px 16px; background: var(--white, #ffffff); color: var(--ink, #142433); } .ds-shop-row > span { display: grid; place-items: center; width: 38px; height: 38px; border-radius: 11px; background: var(--blue, #155bd7); color: var(--white, #ffffff); font-size: 0.75rem; font-weight: 800; } .ds-shop-row p { flex: 1; margin: 0; } .ds-shop-row strong, .ds-shop-row small { display: block; } .ds-shop-row small { color: var(--ink-soft, #506273); } .ds-shop-row i { width: 3px; height: 12px; border-radius: 2px; background: var(--blue, #155bd7); animation: ds-speak 900ms ease-in-out infinite alternate; } .ds-shop-row i:nth-of-type(2) { height: 20px; animation-delay: -500ms; } .ds-shop-row i:nth-of-type(3) { height: 9px; animation-delay: -180ms; } .ds-shop-row i:nth-of-type(4) { height: 16px; animation-delay: -700ms; } .ds-result { position: absolute; left: 34px; bottom: 28px; width: 45%; padding: 16px 18px; border-radius: 14px; background: var(--mint, #c9f0df); color: var(--ink, #142433); box-shadow: 0 15px 30px -22px rgba(0, 0, 0, 0.7); transform: rotate(1.2deg); } .ds-result small, .ds-result span, .ds-result strong { display: block; } .ds-result strong { font: 700 2.25rem/1.15 Georgia, serif; } @keyframes ds-speak { from { transform: scaleY(0.5); } to { transform: scaleY(1); } } @media (prefers-reduced-motion: reduce) { .ds-shop-row i { animation-duration: 0.01ms; animation-iteration-count: 1; } }"
+    },
+    {
+      "name": "Comparison Table",
+      "kind": "custom",
+      "refersTo": "comparison-table",
+      "description": "A dense, factual ledger with visible inclusions and missing answers.",
+      "html": "<div class=\"ds-table-wrap\" tabindex=\"0\"><table class=\"ds-table\"><thead><tr><th>What matters</th><th>Kitchen Mart<br><strong>Aero 60</strong></th><th>Home Appliances<br><strong>PureAir 60</strong></th></tr></thead><tbody><tr><th>Final price</th><td>₹18,500<small>installation included</small></td><td class=\"ds-best\">₹15,500<small>installation included</small><b>Lowest offer</b></td></tr><tr><th>Noise</th><td>58 dB</td><td><span>Not provided</span></td></tr></tbody></table></div>",
+      "css": ".ds-table-wrap { overflow-x: auto; border-radius: 16px; box-shadow: 0 24px 54px -36px rgba(20, 36, 51, 0.55); } .ds-table-wrap:focus-visible { outline: 3px solid var(--sun, #ffcc4a); outline-offset: 4px; } .ds-table { width: 100%; min-width: 620px; border-collapse: collapse; background: var(--white, #ffffff); color: var(--ink, #142433); font: 400 0.92rem/1.55 'Avenir Next', Avenir, 'Segoe UI', sans-serif; } .ds-table th, .ds-table td { padding: 20px 24px; border-bottom: 1px solid var(--line, #ccd7e2); text-align: left; vertical-align: top; } .ds-table thead th { background: var(--ink, #142433); color: #b9c9da; } .ds-table thead strong { color: var(--white, #ffffff); } .ds-table tbody th { color: var(--ink-soft, #506273); font-weight: 650; } .ds-table td { font-size: 1.3rem; font-weight: 800; font-variant-numeric: tabular-nums; } .ds-table td small { display: block; color: var(--ink-soft, #506273); font-size: 0.7rem; font-weight: 500; } .ds-table .ds-best { background: #effbf6; } .ds-table td b, .ds-table td span { display: inline-block; margin-top: 8px; padding: 4px 8px; border-radius: 6px; font-size: 0.7rem; } .ds-table td b { background: var(--mint, #c9f0df); color: #0c6345; } .ds-table td span { background: var(--danger-soft, #fff0ec); color: var(--danger, #a43c24); } .ds-table tbody tr:hover { background: var(--paper, #f1f5f9); }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Cobalt Call Board",
+    "overview": "The interface turns a buyer's comparison brief into something visible and active. It pairs an editorial, trustworthy reading voice with practical controls and structured data, so the experience feels like a clear consumer guide that has begun doing the legwork itself.\n\nThe cobalt call board is the signature expression: a saturated working surface holding a slightly rotated yellow buying brief, an orderly white shop list, and a mint result card. Away from that board, generous paper space, thin rules, and crisp tables keep the product calm, factual, and easy to audit.",
+    "keyCharacteristics": [
+      "Editorial headlines paired with direct, compact interface text.",
+      "Cobalt work surfaces with yellow input notes and mint confirmed outcomes.",
+      "Open page rhythm that tightens only where comparison requires density.",
+      "Realistic sample data, visible gaps, and plain labels that preserve buyer control.",
+      "Motion reserved for the active call waveform and small interaction feedback."
+    ],
+    "rules": [
+      { "name": "The Working Blue Rule", "body": "Cobalt belongs to work in progress and strong actions; it should remain concentrated enough that the call board is the first screen's visual anchor.", "section": "colors" },
+      { "name": "The Evidence Color Rule", "body": "Yellow identifies what the buyer supplied, mint identifies a confirmed or favorable result, and the missing-answer pair identifies a gap. Do not swap these meanings for decoration.", "section": "colors" },
+      { "name": "The Two-Voice Rule", "body": "Georgia makes the promise; the sans-serif system voice explains the mechanism and records the evidence.", "section": "typography" },
+      { "name": "The Brief-to-Ledger Rule", "body": "Start spacious while explaining the request and process, then tighten the layout when offers need row-by-row comparison.", "section": "layout" },
+      { "name": "The Layer-With-Meaning Rule", "body": "Use shadow or rotation only for a sheet, board, or action that sits above another surface in the user's mental model.", "section": "elevation" }
+    ],
+    "dos": [
+      "**Do** make the cobalt call board the memorable mechanism when showing how a request moves through approved shops.",
+      "**Do** keep sample content realistic and visibly labelled as illustrative or fictional.",
+      "**Do** use spacing and thin rules to show relationships before adding another container.",
+      "**Do** keep approval, missing information, units, and price inclusions visible beside the relevant evidence.",
+      "**Do** preserve a useful table width on mobile and explain that it scrolls sideways."
+    ],
+    "donts": [
+      "**Don't** use yellow, mint, or missing-answer colors as interchangeable decoration; each color has a fixed information role.",
+      "**Don't** turn every section or process step into a floating card.",
+      "**Don't** add continuous ambient motion; motion belongs to the active call waveform and brief interaction feedback.",
+      "**Don't** invent a missing shop answer or imply that the assistant made the buying decision."
+    ]
+  }
+}
