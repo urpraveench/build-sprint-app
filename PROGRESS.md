@@ -1,6 +1,18 @@
 # Progress
 
-## Milestone 1 — two saved offers and comparison
+## Direction changed — October 5, 2026
+
+The builder rejected the long capture/confirmation form as recreating information fatigue. Agreed direction: a phone-browser assistant with a natural-sounding standard voice that enquires with shopkeepers, remembers offers, privately helps the buyer decide and negotiates when the situation supports it. It asks privately for material unknown preferences. The buyer can interrupt/take over; only the human accepts a deal or promises to buy. Intended calls to chosen shops include an unanswered-call in-shop fallback. Voice is the intended capture method; new typed-note/photo/form capture is not required.
+
+Updated IDEA_SCOPE.md, PRODUCT.md, PLAN.md, DESIGN.md, AGENTS.md and README.md to reflect this direction. This revision changes documentation only. No application changes, provider connections, voice/calling tests, production deployment or completed buyer study are implied. The previously verified development foundation and its saved data remain as recorded below.
+
+Voice/calling provider/model/languages/costs, recording consent/retention/deletion and unsaved-audio recovery are unresolved. The existing gpt-5.4-mini configuration applies only to note/photo extraction. No real key/provider test is recorded. The old checkpoint ec1d23a is not completion or approval of the new voice milestones.
+
+Documentation checks passed for formatting, local links, scope consistency, revised milestone coverage and separation of planned versus implemented work. Only the seven project documentation files changed; no runtime tests were needed for this documentation-only revision.
+
+Current next step: rehearse one disclosed two-shop conversation with enquiry, private guidance, supported bargaining, interruption and a refusal to make commitments; then settle provider dependencies before coding. PLAN.md and PRODUCT.md contain the revised milestone order.
+
+## Earlier development milestone — two saved offers and comparison
 
 Implemented in the development app at `/app.html`:
 
@@ -32,4 +44,4 @@ The same flow also passed through the local Wi-Fi preview address (rather than l
 
 The local Wi-Fi server serves only `dist/`; requests for environment files, repository settings, backend code and project notes return 404.
 
-Next: builder checks the milestone on their phone, then adds the development OpenAI key so we can test source reading on clear, blurry, conflicting, incomplete, and irrelevant examples before shipping.
+Previous next step was the builder’s phone check and real-key note/photo extraction testing. Neither is recorded as completed; they no longer define the next conversational build milestone. See the direction change above.

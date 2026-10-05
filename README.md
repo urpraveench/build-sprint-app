@@ -1,6 +1,12 @@
 # Buying companion
 
-Milestone 1 at `/app.html` lets a buyer enter needs/budget, keep two shops' original notes and photos, confirm offer details, and save a side-by-side comparison. Needs, sources, confirmed offers, and the comparison are stored in the buyer's Convex account and survive reload/sign-out. One current purchase per account; two offers for this milestone.
+## Current app and revised direction
+
+The builder rejected the long offer form on October 5, 2026. PRODUCT.md, IDEA_SCOPE.md, PLAN.md and DESIGN.md now specify a spoken assistant: in-shop enquiry, private decision help, situational negotiation, and later authorized calling with an unanswered-call fallback. Only the buyer accepts or promises to buy. This documentation revision does not change application code or connect a service.
+
+The instructions below describe the existing development foundation, not the new conversational experience. Live voice, voice capture, negotiation and calling are not implemented. Existing saved notes/photos/offers remain intact. Voice/calling providers, model, languages, recording retention and costs still need decisions/approval.
+
+The earlier milestone 1 at `/app.html` lets a buyer enter needs/budget, keep two shops' original notes and photos, confirm offer details, and save a side-by-side comparison. Needs, sources, confirmed offers, and the comparison are stored in the buyer's Convex account and survive reload/sign-out. One current purchase per account; two offers for this milestone.
 
 ## Run and check on a phone
 
@@ -24,11 +30,13 @@ On the computer open http://127.0.0.1:5173/app.html. To open from your phone on 
 
 Drafts are device-only recovery and are separate from account saves. Unuploaded files must be reselected after reload. Original saved notes are immutable; corrections change captured fields while keeping the original evidence. The landing page `/` remains the explicitly labelled fictional design preview; preparation and other milestones are not enabled.
 
-## OpenAI setup — key added later
+## Existing extraction setup — not a voice service
 
 The backend uses `gpt-5.4-mini` through the OpenAI Responses API for a bounded extraction job. It receives only the selected shop's notes and processing photos, not account credentials or the whole purchase. It does not receive tools or permission to act on the buyer's behalf. Notes/images are treated as evidence, not instructions.
 
 Official model documentation checked October 5, 2026: [GPT-5.4 mini](https://developers.openai.com/api/docs/models/gpt-5.4-mini). It supports text/image inputs and structured output; listed rates are $0.75 per million input tokens and $4.50 per million output tokens. Actual image usage/cost must be measured after adding a key. Voice is not part of this milestone or this model connection.
+
+These settings enable only the old note/photo extraction path, not voice/calling. No new provider or paid public use is approved by this documentation revision.
 
 In the [development Convex dashboard](https://dashboard.convex.dev/t/praveen-cherukuru/build-sprint-app/effervescent-kingfisher-446), open **Settings → Environment Variables**:
 
@@ -47,6 +55,6 @@ The backend checks returned field types, amount formats, source indices and exac
 
 `node tests/browser-purchase.mjs` uses Chrome's existing browser-control connection at http://127.0.0.1:9223 and the local app. It creates fictional test accounts/sources in the development deployment and checks sign-up, needs saving/reopening/editing, two offers, photo upload/reopening, AI-unavailable recovery, confirmation, saved comparison/reload, draft recovery, offline saving/reconnection, stale results, no-fit results, phone/desktop layout, and second-account privacy. `APP_TEST_URL` selects another frontend; `CHROME_DEBUG_URL` selects another Chrome connection. Screenshots are written under `/tmp`.
 
-The app was checked against development `effervescent-kingfisher-446`. Production has not been published or checked. AI extraction quality remains untested until a real key is added. The manual buyer test in PRODUCT.md has not been performed.
+The app was checked against development `effervescent-kingfisher-446`. Production has not been published or checked. AI extraction quality remains untested until a real key is added. The revised conversational buyer test in PRODUCT.md has not been performed. Earlier browser checks do not establish voice quality, safe negotiation or conversational usability.
 
 Existing Convex Auth needs `JWT_PRIVATE_KEY` and `JWKS` on each deployment; development already has them. Email verification/password recovery are not configured. No email service was added. Deployment remains `npm run deploy` with Convex static hosting after the builder confirms the milestone and authorizes shipping. GitHub push does not deploy.
