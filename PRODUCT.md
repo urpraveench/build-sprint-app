@@ -79,7 +79,7 @@ Includes: spoken needs, a standard natural voice, live in-shop enquiry, original
 
 Excludes: accepting a deal, promising to buy, booking/reserving, checkout/payment/order placement, buyer voice cloning, after-purchase help, simultaneous purchases and a history dashboard. Sharing and previously planned Maps suggestions/visit order are parked optional work. They are not prerequisites for the spoken assistant.
 
-The stack stays Codex, GitHub, and Convex for backend, database, auth, file storage and hosting. The existing OpenAI `gpt-5.4-mini` configuration is for note/photo extraction only, with a key still to be supplied and no real provider test. It does not implement live voice or calling. Voice/calling providers, models, supported languages and costs need approval before connection. No new service is authorized by this documentation edit.
+The stack stays Codex, GitHub, and Convex for backend, database, auth, file storage and hosting. The existing OpenAI `gpt-5.4-mini` configuration is for note/photo extraction only, with a key still to be supplied and no real provider test. It does not implement live voice or calling. Sarvam was subsequently approved for milestone 1 on October 5, 2026. First-test languages are Hindi, Telugu and each mixed with English. Actual voice quality, connection setup, recording choices and test spending controls remain to be checked; paid public use and calling services are not approved.
 
 ## 8. Riskiest assumptions and buyer test
 

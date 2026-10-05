@@ -1,5 +1,13 @@
 # Progress
 
+## Sarvam approved — milestone 1 started, October 5, 2026
+
+The builder approved Sarvam for the conversational milestone. Required languages are Hindi, Telugu and each mixed with English. Researched official model, language, pricing and browser Voice Agents documentation. No key was supplied, no provider call occurred, and paid public use remains unauthorized.
+
+The browser route needs a configured Sarvam agent and identifiers in addition to its credential. Temporarily installed its browser package to inspect the secure connection and stop controls; removed it after inspection. The dependency audit is clean again. No application code or database shape changed.
+
+Pending product choice: retain conversation text and offer only, or also audio. Capture/storage and recovery depend on this answer. Milestone 1 is not complete; no phone voice test, noisy-shop test, push or deployment occurred. PLAN.md now records this as the current build step, replacing the documentation-only/rehearsal step below.
+
 ## Direction changed — October 5, 2026
 
 The builder rejected the long capture/confirmation form as recreating information fatigue. Agreed direction: a phone-browser assistant with a natural-sounding standard voice that enquires with shopkeepers, remembers offers, privately helps the buyer decide and negotiates when the situation supports it. It asks privately for material unknown preferences. The buyer can interrupt/take over; only the human accepts a deal or promises to buy. Intended calls to chosen shops include an unanswered-call in-shop fallback. Voice is the intended capture method; new typed-note/photo/form capture is not required.

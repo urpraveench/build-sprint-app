@@ -58,3 +58,9 @@ The backend checks returned field types, amount formats, source indices and exac
 The app was checked against development `effervescent-kingfisher-446`. Production has not been published or checked. AI extraction quality remains untested until a real key is added. The revised conversational buyer test in PRODUCT.md has not been performed. Earlier browser checks do not establish voice quality, safe negotiation or conversational usability.
 
 Existing Convex Auth needs `JWT_PRIVATE_KEY` and `JWKS` on each deployment; development already has them. Email verification/password recovery are not configured. No email service was added. Deployment remains `npm run deploy` with Convex static hosting after the builder confirms the milestone and authorizes shipping. GitHub push does not deploy.
+
+## Sarvam voice build status
+
+Sarvam is approved for milestone 1; Hindi, Telugu and mixed-English conversations are required. Voice is not implemented or tested yet. The recording choice is pending, and no credential or paid session has been enabled. The browser Voice Agents route requires a configured Sarvam agent, not merely a model API key. See PLAN.md for the current step.
+
+Official references: [models](https://docs.sarvam.ai/api/getting-started/models), [Indian-language guidance](https://docs.sarvam.ai/api/getting-started/building-for-india), [component API pricing](https://docs.sarvam.ai/api/getting-started/pricing), [browser connection and key protection](https://docs.sarvam.ai/conversations/deploy/sdks/web). Component API prices are not an all-in Voice Agents quote.

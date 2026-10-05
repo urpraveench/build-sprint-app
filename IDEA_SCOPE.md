@@ -48,3 +48,7 @@ The website, GitHub source control, and Convex backend/auth/storage/hosting rema
 No structured buyer test has happened. Willingness to pay, the earlier 10% savings illustration, market size and competitor distinctions were hypotheses; do not use them as validated claims.
 
 Next, rehearse one two-shop conversation with clearly disclosed human role-play. Check whether questions produce enough evidence, private advice helps a decision, and the buyer can interrupt without filling a form. PRODUCT.md specifies the test and the boundaries. This documentation update does not build or publish the new experience.
+
+## Subsequent provider decision — October 5, 2026
+
+The builder approved Sarvam for milestone 1. Required first-test languages are Hindi, Telugu, Hindi mixed with English and Telugu mixed with English. This authorizes development, not paid public use, phone calling or deployment. Recording retention is pending: conversation text and offer only, or audio too. PLAN.md records the current build step. Earlier statements that no voice provider is approved are superseded by this decision; model/connection, retention and spending details remain to be settled.

@@ -8,18 +8,17 @@ A phone-browser assistant talks to the shopkeeper in a natural-sounding standard
 
 Voice is the intended capture method. Do not replace a long form with a spoken checklist of the same fields. Ask only questions that can change the decision; show a short summary and one useful next question. No mandatory typed notes or photo uploads in the new flow.
 
-## Current step: scope and conversation rehearsal
+## Current step: milestone 1 with Sarvam
 
-This request updates documentation only. Do not start application changes, connect a voice/calling service, enable paid public use, push or deploy as a side effect.
+The builder explicitly requested milestone 1 and approved Sarvam on October 5, 2026. This supersedes the earlier documentation-only step and authorizes development of one in-shop enquiry, spoken needs, standard voice, pause/stop/takeover, short review and an owned offer that saves and reopens in Convex. It does not authorize deployment or paid public use.
 
-Next, walk one complete two-shop scenario using disclosed role-play: spoken needs, enquiry, a compact offer summary, a second offer with different terms, private comparison advice, a justified bargaining exchange and a request to accept the deal. Use it to check question burden and buyer control before selecting a voice service.
+Required first-test languages: Hindi, Telugu, Hindi mixed with English and Telugu mixed with English. Test mixed speech, prices and model names; documented language support is not evidence of accuracy in a noisy shop.
 
-Before a voice build, settle the remaining product/provider dependencies one at a time:
+Sarvam is the approved voice provider. Its Voice Agents browser route requires a configured, committed agent and organization/workspace/agent identifiers as well as a server-held credential. Inspect the actual API contract before choosing the connection; never copy the documentation's key into browser code. Its separate speech/text API prices are not the packaged Voice Agents total price.
 
-- Conversation language needed for the first buyer test; confirm supported language/voice quality on a real phone.
-- Microphone, speakerphone and interruption behavior in a noisy shop; browser/device capability must be tested, not assumed.
-- Recording consent, what audio/transcripts are retained, retention/deletion and recovery of an unsaved session.
-- Voice/calling provider and model, required services, prices, spending controls and session-duration/call limits. Existing note/photo extraction approval does not select these services. Ask before connecting them; keep the fixed Convex stack.
+Pending buyer choice, asked October 5: save conversation text and offer only, or also retain audio. Do not implement or enable capture that assumes this answer. Settle consent, retention/deletion and unsaved-source recovery consistently with the answer. Key entry and bounded test usage follow; no provider call has occurred.
+
+The earlier disclosed role-play remains a useful check before paid testing, but the builder has now asked to start milestone 1. Do independent configuration research while the recording choice is pending. Keep existing offers, sources and comparison data compatible.
 
 ## Implementation order
 
