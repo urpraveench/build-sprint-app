@@ -8,6 +8,10 @@ A phone-browser assistant talks to the shopkeeper in a natural-sounding standard
 
 Voice is the intended capture method. Do not replace a long form with a spoken checklist of the same fields. Ask only questions that can change the decision; show a short summary and one useful next question. No mandatory typed notes or photo uploads in the new flow.
 
+## Current local interface check
+
+October 5: simplified the conversation screen after the builder reported confusing buttons. Local UI and development-account storage checks passed; no new voice requests or publication. Next, have the builder try http://127.0.0.1:5173/app.html on this computer, then continue the already bounded phone voice proof.
+
 ## Current step: finish proving milestone 1 with Sarvam
 
 The builder requested milestone 1 and approved Sarvam. Hindi, Telugu and each mixed with English are required. They explicitly chose **conversation text only; no retained audio**, and asked for the completed code to be checked in.

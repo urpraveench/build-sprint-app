@@ -68,13 +68,19 @@ const fixture={requestId:randomUUID(),language:"te-IN",shop:"Fictional shop A",b
 try{
  await send("Page.enable");await send("Runtime.enable");await send("Emulation.setDeviceMetricsOverride",{width:390,height:844,deviceScaleFactor:1,mobile:true});
  await waitFor("document.querySelector('#voice-language')");assert.equal(await evaluate("document.querySelectorAll('input,textarea').length"),0);
- await waitFor("document.querySelector('.voice-setup')");await click("Tell me what you’re buying");await waitFor("document.querySelector('[role=alert]')");assert.match(await evaluate("document.querySelector('[role=alert]').textContent"),/Sarvam key|paused/);
+ // Inspect startup without reserving paid voice requests.
+ assert.equal(await evaluate("document.querySelector('#voice-title').textContent"),"What are you buying?");
+ assert.equal(await evaluate("document.querySelectorAll('button.primary').length"),1);
+ assert.equal(await evaluate("document.querySelector('button.primary').getBoundingClientRect().bottom < innerHeight"),true);
  await screenshot("voice-mobile-start");
  // A disclosed fictional captured-text fixture: this checks real auth/storage, not Sarvam listening.
  await evaluate(`localStorage.setItem('voice-offer-draft:v1',${JSON.stringify(JSON.stringify(fixture))})`);await reload();
  await waitFor("document.body.innerText.includes('Fictional shop A')");assert.equal(await evaluate("document.documentElement.scrollWidth>innerWidth"),false);
- await click("Pause");assert.match(await evaluate("document.querySelector('.voice-state').textContent"),/Paused/);
- await click("Take over");assert.match(await evaluate("document.querySelector('.voice-state').textContent"),/You have control/);
+ assert.equal(await evaluate("document.querySelector('.voice-controls')"),null);
+ assert.equal(await evaluate("Array.from(document.querySelectorAll('button')).some(b=>b.textContent==='Pause'||b.textContent==='Take over')"),false);
+ await evaluate("document.querySelector('.voice-return summary').click()");
+ assert.equal(await evaluate("document.querySelector('.voice-return button').textContent"),"Resume assistant");
+ await evaluate("document.querySelector('.voice-return summary').click()");
  await click("Correct something");await fill("correct-value","C60 revised by buyer");await click("Keep correction");
  await click("Looks right — save offer");await waitFor("document.querySelector('#email')");
  await click("Create account");await fill("email",email);await fill("password",password);await click("Create account");
@@ -92,5 +98,5 @@ try{
  await click("Sign in to reopen my offer");await waitFor("document.querySelector('#email')");await click("Create account");await fill("email",`voice-other-${randomUUID()}@example.test`);await fill("password",randomUUID());await click("Create account");
  await waitFor("document.body.innerText.includes('Sign out') && !document.querySelector('#email')");assert.equal(await evaluate("document.body.innerText.includes('Fictional shop A')"),false);
  assert.equal(await evaluate("document.querySelectorAll('input,textarea').length"),0);
- console.log("PASS: phone/desktop UI, honest missing-key state, disclosed fictional text draft, pause/takeover UI, one-detail correction, real account save/reload, original text, unreviewed hidden details, cleared draft and second-account privacy. No real voice call tested.");
+ console.log("PASS: phone/desktop UI, single startup action, review without irrelevant conversation controls, optional return to shop, disclosed fictional text draft, one-detail correction, real account save/reload, original text, unreviewed hidden details, cleared draft and second-account privacy. No real voice call tested.");
 }finally{await browserSend("Target.disposeBrowserContext",{browserContextId});ws.close();browser.close();}

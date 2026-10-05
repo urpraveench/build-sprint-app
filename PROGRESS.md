@@ -22,6 +22,14 @@ Next: a separately enabled, supervised real microphone session and secure phone 
 
 # Progress
 
+## Local interface simplification — October 5, 2026
+
+The builder found the conversation buttons confusing before local testing. Shortened the opening screen, made titles describe the current step, and moved voice/privacy explanations and earlier notes behind expandable links. During conversation, Pause changes to Resume after stopping; Answer finished appears only while listening, and Take over remains available in the shop. Brief review and offer review no longer show unrelated conversation controls. Returning to the shop is available under a clearly labelled expandable option. No provider, backend, saved-data format, calling or negotiation changes.
+
+Checks: npm test passed (17 tests, navigation, backend types and build). Chrome at 390px and 1440px checked the layout; the existing browser flow passed a fictional text draft, short correction, real development-account creation/save/reload, original source preservation, hidden facts remaining unreviewed, sign-out and second-account privacy. Opening button is visible without scrolling at 390 × 844; review has no Pause/Take over controls. No paid voice requests or real microphone checks were made in this pass. Local server is running at http://127.0.0.1:5173/app.html. Not deployed or pushed.
+
+Next: builder tries the simpler local screen and reports any remaining confusing step; real-phone speech proof remains pending.
+
 ## Milestone 1 development implementation — October 5, 2026
 
 The builder chose Sarvam and explicitly instructed text-only retention with no saved audio. They asked to check in the code after completing changes. `/app.html` now opens the conversational workspace; `/app.html?legacy=1` preserves the earlier note/photo offers and comparisons.
