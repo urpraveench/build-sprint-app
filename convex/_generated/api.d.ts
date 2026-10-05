@@ -14,6 +14,9 @@ import type * as http from "../http.js";
 import type * as offerFields from "../offerFields.js";
 import type * as offers from "../offers.js";
 import type * as purchases from "../purchases.js";
+import type * as sarvam from "../sarvam.js";
+import type * as voice from "../voice.js";
+import type * as voiceFields from "../voiceFields.js";
 import type * as waitlist from "../waitlist.js";
 
 import type {
@@ -29,6 +32,9 @@ declare const fullApi: ApiFromModules<{
   offerFields: typeof offerFields;
   offers: typeof offers;
   purchases: typeof purchases;
+  sarvam: typeof sarvam;
+  voice: typeof voice;
+  voiceFields: typeof voiceFields;
   waitlist: typeof waitlist;
 }>;
 
@@ -60,4 +66,5 @@ export declare const internal: FilterApi<
 
 export declare const components: {
   staticHosting: import("@convex-dev/static-hosting/_generated/component.js").ComponentApi<"staticHosting">;
+  agent: import("@convex-dev/agent/_generated/component.js").ComponentApi<"agent">;
 };

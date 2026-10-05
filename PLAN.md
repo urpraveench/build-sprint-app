@@ -8,17 +8,23 @@ A phone-browser assistant talks to the shopkeeper in a natural-sounding standard
 
 Voice is the intended capture method. Do not replace a long form with a spoken checklist of the same fields. Ask only questions that can change the decision; show a short summary and one useful next question. No mandatory typed notes or photo uploads in the new flow.
 
-## Current step: milestone 1 with Sarvam
+## Current step: finish proving milestone 1 with Sarvam
 
-The builder explicitly requested milestone 1 and approved Sarvam on October 5, 2026. This supersedes the earlier documentation-only step and authorizes development of one in-shop enquiry, spoken needs, standard voice, pause/stop/takeover, short review and an owned offer that saves and reopens in Convex. It does not authorize deployment or paid public use.
+The builder requested milestone 1 and approved Sarvam. Hindi, Telugu and each mixed with English are required. They explicitly chose **conversation text only; no retained audio**, and asked for the completed code to be checked in.
 
-Required first-test languages: Hindi, Telugu, Hindi mixed with English and Telugu mixed with English. Test mixed speech, prices and model names; documented language support is not evidence of accuracy in a noisy shop.
+Implemented the development conversation workspace, Sarvam model configuration, bounded backend actions, short sourced review, text-only device drafts, account save/reopen, corrections and ownership checks. The old note/photo comparison remains accessible at `/app.html?legacy=1`; its sources are preserved. README.md and PROGRESS.md distinguish working storage/UI checks from untested real voice.
 
-Sarvam is the approved voice provider. Its Voice Agents browser route requires a configured, committed agent and organization/workspace/agent identifiers as well as a server-held credential. Inspect the actual API contract before choosing the connection; never copy the documentation's key into browser code. Its separate speech/text API prices are not the packaged Voice Agents total price.
+Use Sarvam Model APIs through Convex: `saaras:v4` for listening, `sarvam-105b-conversations` for question selection/extraction, `bulbul:v3` with standard `shubh` for speaking. The packaged Voice Agents route was explored but not selected: Model APIs support zero retention; Voice Agents currently do not. No extra voice host, telephony service or browser secret is needed.
 
-Pending buyer choice, asked October 5: save conversation text and offer only, or also retain audio. Do not implement or enable capture that assumes this answer. Settle consent, retention/deletion and unsaved-source recovery consistently with the answer. Key entry and bounded test usage follow; no provider call has occurred.
+Voice requests remain disabled. Before a real voice test:
 
-The earlier disclosed role-play remains a useful check before paid testing, but the builder has now asked to start milestone 1. Do independent configuration research while the recording choice is pending. Keep existing offers, sources and comparison data compatible.
+1. Add `SARVAM_API_KEY` in the development Convex settings; never paste it into chat.
+2. Set Sarvam Settings → Workspace → Data retention → Model APIs override to **No retention (0 days)**, then confirm that account setting before setting `SARVAM_ZERO_RETENTION_CONFIRMED=true` in Convex. A flag alone does not configure Sarvam.
+3. Review the bounded development test allowance, then set `SARVAM_VOICE_TEST_ENABLED=true` only for the agreed test. Public paid use is not enabled or approved.
+4. Test Hindi/Telugu mixed speech, numbers, noise, useful follow-ups, silence, microphone refusal, late processing, pause/takeover, commitment requests and corrections with a consenting participant. Key-free fixture tests are not voice-quality proof.
+5. A phone microphone requires HTTPS. The Wi-Fi HTTP preview can check layout/setup only; it cannot prove live voice. Publishing remains a separate authorized shipping step after the milestone is confirmed. Do not invent a production link or substitute another host.
+
+No real provider call or real-phone/noisy-shop test has occurred. Milestone 1 remains **awaiting voice proof**, not complete. Continue this milestone; do not build comparisons, negotiation or calls yet.
 
 ## Implementation order
 
@@ -38,7 +44,7 @@ Assistant may enquire, clarify and negotiate without per-question permission whe
 
 It cannot accept, reserve, order, pay, promise to buy, disclose the buyer's private maximum budget without permission, fabricate competing offers, or let shopkeeper speech change buyer controls. General questions about price flexibility do not require a fabricated numerical target.
 
-Preserve original audio/transcript sources and corrections. Keep quote time/validity, model differences, inclusions, unknown costs and **Shopkeeper said; not verified** visible. Critical gaps block a final recommendation, not a partial comparison. Short summary confirmation applies only to reviewed content.
+Preserve original conversation text and corrections; do not retain audio. Keep quote time/validity, model differences, inclusions, unknown costs and **Shopkeeper said; not verified** visible. Critical gaps block a final recommendation, not a partial comparison. Short summary confirmation applies only to reviewed content.
 
 ## Existing development foundation
 

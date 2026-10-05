@@ -1,5 +1,23 @@
 # Progress
 
+## Milestone 1 development implementation — October 5, 2026
+
+The builder chose Sarvam and explicitly instructed text-only retention with no saved audio. They asked to check in the code after completing changes. `/app.html` now opens the conversational workspace; `/app.html?legacy=1` preserves the earlier note/photo offers and comparisons.
+
+Built: Hindi/Hinglish and Telugu/English starting-language controls; spoken brief and standard-voice enquiry configuration; participant agreement before shop capture; pause/takeover/end/manual resume; a four-detail review with one-detail corrections; original text kept separately from corrections; reviewed visible facts distinguished from hidden unreviewed facts; account-owned Convex save/reopen and correction; device-only text drafts; honest missing-key, permission/network/provider and limit states.
+
+Sarvam Model APIs run in Convex actions (`saaras:v4`, `sarvam-105b-conversations`, `bulbul:v3`, standard `shubh`). Only predefined enquiry questions and handoff speech can be spoken; the model selects useful questions and extracts literal source facts. No buying/accepting/booking tool, negotiation or calling was added. Speech and listening alternate; automatic listening stops after silence or 23 seconds, with an Answer finished control. A pause stops app playback and microphone capture; a late completed transcript may still be preserved without resuming speech. Actual timing and voice quality remain untested.
+
+Audio stays in memory for processing and is not saved to Convex storage, device drafts, source files or an AI trace. AI component message storage is disabled for these bounded calls; account saves contain text only. Sarvam Model APIs zero-retention must be configured in the provider workspace and confirmed separately before capture is enabled. Its packaged Voice Agents route was inspected and declined because zero retention is not currently supported there.
+
+Checks: `npm test` passed (14 tests plus navigation check, backend types and build); development Convex functions pushed cleanly to `effervescent-kingfisher-446`; dependency audit found no vulnerabilities. Chrome at 390px and 1440px verified honest missing-key state, a disclosed fictional transcript draft, pause/takeover states, short correction, real signup/account save, reload, saved correction with original text retained, hidden facts staying unreviewed, and second-account privacy. The old two-offer workflow also passed its browser check through the legacy route. Fictional transcript fixtures and a mocked provider failure tested storage/recovery; neither represents a live Sarvam call.
+
+Limits implemented on the server: 10-minute session authorization, 24-second mono 16kHz WAV input maximum, 60/24,000-character bounded conversation, 1,600 model output tokens, no automatic paid retries, 48 reserved provider attempts per session, 6 sessions and 120 reserved provider attempts per UTC day globally, concurrent-turn lock. Reservations are conservative allowances, not measured billing or a rupee hard cap. No public voice rollout is authorized.
+
+Remaining: user-supplied Sarvam key, verified provider No retention setting, agreed test activation, real speech/mixed-language/noise/interrupt/permission/refusal tests, secure phone test and separate deployment approval. No phone microphone works on the current LAN HTTP preview. No push or app deployment occurred. Milestone 1 is **awaiting live voice proof**.
+
+Next: add the development Sarvam key and configure Model APIs No retention; then run the bounded voice test. Earlier provider-selection/rehearsal notes below are historical.
+
 ## Sarvam approved — milestone 1 started, October 5, 2026
 
 The builder approved Sarvam for the conversational milestone. Required languages are Hindi, Telugu and each mixed with English. Researched official model, language, pricing and browser Voice Agents documentation. No key was supplied, no provider call occurred, and paid public use remains unauthorized.

@@ -50,7 +50,7 @@ Buyer controls and instructions are separate from shopkeeper evidence. A shopkee
 
 ## 5. Evidence and confirmation
 
-Save original audio/transcript references, shop, session time, offer terms, quote date/validity, model/specifications, costs, corrections, field-level confirmation and comparison versions. Store permitted recordings in Convex file storage with account ownership checks. Recording/transcript retention, deletion and participant-consent behavior must be decided before a voice pilot; do not silently create permanent recordings or public logs.
+Save original conversation text, shop, session time, offer terms, quote date/validity, model/specifications, costs, corrections, field-level confirmation and comparison versions. The buyer chose no retained audio: audio may be processed temporarily, but never saved to app storage or a device draft. Configure Sarvam Model APIs for No retention before testing. Keep account ownership checks and participant agreement; transcript deletion and public-pilot retention behavior remain to be settled.
 
 - **Not provided** means absent; **Needs checking** means unclear or conflicting.
 - Unknown installation/delivery/other costs are not ₹0. A quoted price is not a full total without known inclusions and extras.
@@ -75,11 +75,11 @@ Voice is the intended capture method. Typed notes and photo uploads are not requ
 
 ## 7. Intended V1 and boundaries
 
-Includes: spoken needs, a standard natural voice, live in-shop enquiry, original voice evidence with short confirmation, situation-dependent negotiation, private advice, interruption/takeover, saved offers/comparisons across shops, authorized calls and unanswered-call fallback, and recording the buyer's eventual purchase. One current purchase per account; reopening is required throughout, not deferred to the last milestone.
+Includes: spoken needs, a standard natural voice, live in-shop enquiry, original conversation text with short confirmation, situation-dependent negotiation, private advice, interruption/takeover, saved offers/comparisons across shops, authorized calls and unanswered-call fallback, and recording the buyer's eventual purchase. One current purchase per account; reopening is required throughout, not deferred to the last milestone.
 
 Excludes: accepting a deal, promising to buy, booking/reserving, checkout/payment/order placement, buyer voice cloning, after-purchase help, simultaneous purchases and a history dashboard. Sharing and previously planned Maps suggestions/visit order are parked optional work. They are not prerequisites for the spoken assistant.
 
-The stack stays Codex, GitHub, and Convex for backend, database, auth, file storage and hosting. The existing OpenAI `gpt-5.4-mini` configuration is for note/photo extraction only, with a key still to be supplied and no real provider test. It does not implement live voice or calling. Sarvam was subsequently approved for milestone 1 on October 5, 2026. First-test languages are Hindi, Telugu and each mixed with English. Actual voice quality, connection setup, recording choices and test spending controls remain to be checked; paid public use and calling services are not approved.
+The stack stays Codex, GitHub, and Convex for backend, database, auth, file storage and hosting. The existing OpenAI `gpt-5.4-mini` configuration is for note/photo extraction only, with a key still to be supplied and no real provider test. It does not implement live voice or calling. Sarvam was subsequently approved for milestone 1 on October 5, 2026. First-test languages are Hindi, Telugu and each mixed with English. The text-only retention choice is settled. Actual voice quality, provider zero-retention configuration and test spending controls remain to be checked; paid public use and calling services are not approved.
 
 ## 8. Riskiest assumptions and buyer test
 
@@ -109,3 +109,9 @@ These outcomes replace the previous milestone order. Existing development work i
 5. **I can record my own purchase decision.** Save actual shop/model/final price after I buy. No purchase inferred from the conversation.
 
 At every milestone, saved data, permissions, failure recovery and account ownership must work end to end. Do one milestone at a time; do not build disconnected voice screens or connect paid services before approval.
+
+## Milestone 1 implementation decision — October 5, 2026
+
+The builder approved Sarvam and chose conversation text only: no audio retention. Development now uses Sarvam Model APIs through Convex (Saaras v4 listening, Sarvam 105B Conversations question selection/extraction, Bulbul v3 standard `shubh` speech). This replaces earlier undecided-provider/model/language statements for milestone 1. Hindi, Telugu and each mixed with English are the first-test requirements. Model APIs must be configured for No retention at Sarvam before enabling audio processing; the packaged Voice Agents route is not used.
+
+The development workspace and text-only saving/reopening are implemented. Real Sarvam voice, naturalness, noise, latency and phone behavior are not verified; the key is still to be supplied and voice requests remain disabled. It alternates listening and speaking in bounded turns, with pause/takeover/end and explicit resume. Milestone 1 does not include two-shop comparison, negotiation or calling. README.md gives setup/check steps; PROGRESS.md records actual checks. This implementation decision does not authorize paid public use or deployment.

@@ -91,7 +91,7 @@ Keep these four groups clear on a phone:
 3. **Current offer summary:** model, quoted price, known inclusions and the most important unresolved point. Fill progressively from evidence; **Not provided** until known. Show fuller facts and source excerpts only when expanded.
 4. **Persistent controls:** **Pause**, **Take over** and **End conversation**, reachable while scrolling or when a private answer control has focus. Resuming requires the buyer's action. A call also has **End call**.
 
-Use a visible **Listening/recording** distinction. Recording requires the agreed consent/retention behavior before a voice pilot. Starting the session must not imply every sound will be saved forever. Stop/mute indicators must describe actual audio behavior; pausing speech alone must not falsely claim the microphone stopped.
+Show when the microphone is listening and when it is off. The buyer selected text-only retention: process spoken turns temporarily, discard audio, and retain original conversation text. Obtain participant agreement and verify provider No retention before testing. Stop/mute indicators must describe actual audio behavior; pausing speech alone must not falsely claim the microphone stopped.
 
 The workspace is for buying a specific product, not an open-ended chat page. Do not make the buyer read a full transcript, maintain a chat history dashboard, or type every shop response to proceed. The conversation should gather relevant facts without asking every possible field.
 
@@ -99,7 +99,7 @@ Private buyer guidance has its own clearly labelled **Only for you** area. It is
 
 When a buyer answer is necessary, show one short question and specific choices, with **I don't know** or **Take over** when applicable. Pause shop-facing speech before a private exchange; do not read private choices or maximum budget aloud. No response does not grant permission. If the buyer cannot privately answer, pause or hand control back.
 
-The intended voice is natural and standard, not an imitation of the buyer. The exact voice and supported languages are not selected; do not invent a voice picker or language catalogue. Text transcripts, short text corrections, visible controls and screen-reader access complement the voice experience without reintroducing a large capture form. If spoken output is unavailable, show an honest failure/takeover state rather than a simulated negotiation.
+The intended voice is natural and standard, not an imitation of the buyer. Milestone 1 uses the standard Sarvam shubh voice with Hindi/Hinglish and Telugu/English starting-language controls; quality is untested. Do not invent a wider language catalogue. Text transcripts, short text corrections, visible controls and screen-reader access complement the voice experience without reintroducing a large capture form. If spoken output is unavailable, show an honest failure/takeover state rather than a simulated negotiation.
 
 ## 5. Short review and decision help
 
@@ -127,7 +127,7 @@ The optional full comparison retains real table row/column headers, caption, ₹
 | No supported numerical bargaining target | **Not enough evidence to suggest a bargaining price** | Do not prevent ordinary questions about price flexibility or inclusions. |
 | Missing quote expiry | **Validity not provided** | Keep session/quote time separate; do not infer validity. |
 
-External product facts need an identifiable source and date. Keep original permitted audio/transcript references and buyer corrections. Allow access to existing saved notes/photos during migration; do not require new uploads or erase old offers.
+External product facts need an identifiable source and date. Keep original conversation text and buyer corrections; do not retain audio. Allow access to existing saved notes/photos during migration; do not require new uploads or erase old offers.
 
 Show **Not saved yet**, **Saving…**, **Saved**, or **Changes not saved** and the last successful save time. **Saved** requires Convex confirmation; a completed conversation, a transcript or a successful audio upload alone is not a saved offer. Device drafts say **Draft on this device; not saved to your account**. Never store passwords in them.
 
@@ -161,3 +161,9 @@ All controls have visible labels, keyboard access and clear focus. Announce stat
 Before claiming the conversational milestone works, check an actual phone for microphone/speaker behavior, noise, interruptions, private advice leakage, permission refusal, shopkeeper refusal, call no-answer/disconnect, unclear or conflicting models, unknown costs, stale quotes, failed save/reopen and account privacy. Verify that **Looks right** does not confirm hidden details, that negotiation never creates acceptance, and that the buyer does not have to fill a form to continue.
 
 These are design requirements for future implementation. This revision changes documentation only; it does not certify browser voice support, pick a provider, add screens or publish the app.
+
+## Milestone 1 implementation decision — October 5, 2026
+
+The builder approved Sarvam and chose conversation text only: no audio retention. Development now uses Sarvam Model APIs through Convex (Saaras v4 listening, Sarvam 105B Conversations question selection/extraction, Bulbul v3 standard `shubh` speech). This replaces earlier undecided-provider/model/language statements for milestone 1. Hindi, Telugu and each mixed with English are the first-test requirements. Model APIs must be configured for No retention at Sarvam before enabling audio processing; the packaged Voice Agents route is not used.
+
+The development workspace and text-only saving/reopening are implemented. Real Sarvam voice, naturalness, noise, latency and phone behavior are not verified; the key is still to be supplied and voice requests remain disabled. It alternates listening and speaking in bounded turns, with pause/takeover/end and explicit resume. Milestone 1 does not include two-shop comparison, negotiation or calling. README.md gives setup/check steps; PROGRESS.md records actual checks. This implementation decision does not authorize paid public use or deployment.

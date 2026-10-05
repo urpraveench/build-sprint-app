@@ -2,10 +2,13 @@ import { defineSchema, defineTable } from "convex/server";
 import { authTables } from "@convex-dev/auth/server";
 import { v } from "convex/values";
 
+import { voiceBrief, voiceFact, voiceTurn } from "./voiceFields";
 import { offerDetails, comparisonRow, offerSnapshot } from "./offerFields";
 
 export default defineSchema({
   ...authTables,
+  voiceSessions: defineTable({ tokenHash: v.string(), userId: v.union(v.id("users"), v.null()), expiresAt: v.number(), attempts: v.number(), busyUntil: v.number() }).index("by_token", ["tokenHash"]),
+  voiceOffers: defineTable({ userId: v.id("users"), requestId: v.string(), shop: v.string(), brief: voiceBrief, facts: v.array(voiceFact), turns: v.array(voiceTurn), reviewedKeys: v.array(v.string()), corrections: v.array(v.object({ key: v.string(), value: v.string() })), createdAt: v.number(), updatedAt: v.number() }).index("by_user", ["userId"]).index("by_request", ["userId", "requestId"]),
   waitlist: defineTable({
     email: v.string(),
   }).index("by_email", ["email"]),

@@ -41,7 +41,7 @@ Intended V1 includes in-shop spoken enquiry, voice capture, short confirmation, 
 
 Checkout, buying through the app, accepting deals, voice cloning, after-purchase help, simultaneous purchases, and a history dashboard remain outside V1. Sharing and previously discussed Maps/visit planning are parked optional work, not requirements for the first conversation milestone.
 
-The website, GitHub source control, and Convex backend/auth/storage/hosting remain fixed. Voice/calling providers, voice model, language support, recording retention and paid-service costs have not been selected or approved. The existing OpenAI note/photo extraction model is not evidence of a working voice assistant.
+The website, GitHub source control, and Convex backend/auth/storage/hosting remain fixed. Sarvam Model APIs and the milestone 1 model configuration are selected. Hindi, Telugu and mixed-English speech are required. Retain conversation text only, not audio. Provider zero-retention configuration, voice quality and paid public-use controls remain unverified; a calling provider is not selected. The existing OpenAI note/photo extraction model is not evidence of a working voice assistant.
 
 ## Evidence and the next test
 
@@ -51,4 +51,10 @@ Next, rehearse one two-shop conversation with clearly disclosed human role-play.
 
 ## Subsequent provider decision — October 5, 2026
 
-The builder approved Sarvam for milestone 1. Required first-test languages are Hindi, Telugu, Hindi mixed with English and Telugu mixed with English. This authorizes development, not paid public use, phone calling or deployment. Recording retention is pending: conversation text and offer only, or audio too. PLAN.md records the current build step. Earlier statements that no voice provider is approved are superseded by this decision; model/connection, retention and spending details remain to be settled.
+The builder approved Sarvam for milestone 1. Required first-test languages are Hindi, Telugu, Hindi mixed with English and Telugu mixed with English. This authorizes development, not paid public use, phone calling or deployment. The buyer subsequently selected conversation text and offer only, with no retained audio. PLAN.md records the current build step. Earlier statements that no voice provider is approved are superseded by this decision; model/connection, retention and spending details remain to be settled.
+
+## Milestone 1 implementation decision — October 5, 2026
+
+The builder approved Sarvam and chose conversation text only: no audio retention. Development now uses Sarvam Model APIs through Convex (Saaras v4 listening, Sarvam 105B Conversations question selection/extraction, Bulbul v3 standard `shubh` speech). This replaces earlier undecided-provider/model/language statements for milestone 1. Hindi, Telugu and each mixed with English are the first-test requirements. Model APIs must be configured for No retention at Sarvam before enabling audio processing; the packaged Voice Agents route is not used.
+
+The development workspace and text-only saving/reopening are implemented. Real Sarvam voice, naturalness, noise, latency and phone behavior are not verified; the key is still to be supplied and voice requests remain disabled. It alternates listening and speaking in bounded turns, with pause/takeover/end and explicit resume. Milestone 1 does not include two-shop comparison, negotiation or calling. README.md gives setup/check steps; PROGRESS.md records actual checks. This implementation decision does not authorize paid public use or deployment.

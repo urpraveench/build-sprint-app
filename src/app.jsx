@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { createRoot } from "react-dom/client";
 import { ConvexReactClient, useConvexAuth, useMutation, useQuery } from "convex/react";
 import { ConvexAuthProvider, useAuthActions } from "@convex-dev/auth/react";
+import Voice from "./voice";
 import Offers, { readDraft } from "./offers";
 import { api } from "../convex/_generated/api";
 
@@ -127,7 +128,7 @@ function App() {
   const [signingOut, setSigningOut] = useState(false);
   const [account, setAccount] = useState(false);
   return <><header className="app-header"><span className="wordmark">Buying companion</span>{isAuthenticated && <button className="text-button" disabled={signingOut} onClick={async () => { if (!window.confirm("Sign out? Any unsaved changes will be discarded.")) return; setSigningOut(true); try { await signOut(); } catch { setError("Could not sign out. Try again."); } finally { setSigningOut(false); } }}>{signingOut ? "Signing out…" : "Sign out"}</button>}</header>
-    <main id="main" tabIndex={-1}>{error && <p className="error" role="alert">{error}</p>}<ErrorBoundary>{isLoading ? <Loading text="Checking your sign-in…" /> : isAuthenticated ? <Purchase /> : account ? <><button className="text-button" onClick={() => setAccount(false)}>Back to needs and note</button><Account /></> : <Start onAccount={() => setAccount(true)} />}</ErrorBoundary></main>
+    <main id="main" tabIndex={-1}>{error && <p className="error" role="alert">{error}</p>}<ErrorBoundary>{!new URLSearchParams(location.search).has("legacy") ? <Voice Account={Account}/> : isLoading ? <Loading text="Checking your sign-in…" /> : isAuthenticated ? <Purchase /> : account ? <><button className="text-button" onClick={() => setAccount(false)}>Back to needs and note</button><Account /></> : <Start onAccount={() => setAccount(true)} />}</ErrorBoundary></main>
     <footer>One purchase. Your budget. Your priorities.</footer></>;
 }
 
