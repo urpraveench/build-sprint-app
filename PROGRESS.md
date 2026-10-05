@@ -1,3 +1,13 @@
+## Authorized HTTPS phone trial — October 5, 2026
+
+The builder chose a phone test and explicitly authorized publishing the development page and enabling voice within the ₹20 test allowance. Published the built app through Convex static hosting to https://effervescent-kingfisher-446.convex.site/app.html, using the development backend effervescent-kingfisher-446. This is internet-accessible development hosting; production and GitHub push were not authorized or performed.
+
+Added SARVAM_VOICE_TEST_UNTIL=1791218341950 (October 5, 2026, 10:09 pm IST) and enabled the development trial. Both the enabled flag and a future expiry are required. Expiry blocks new sessions and further provider reservations; saved text can still be reviewed and saved. Six sessions are allowed per explicitly configured trial window, with the existing 120/day global provider-attempt cap and 48/session cap retained. This separates the buyer's trial session quota from earlier setup sessions. Monetary billing is still not a hard app-enforced cap.
+
+The live phone-width browser storage flow passed: fictional source, real account creation/save/reload, correction preserving original text, unreviewed hidden details, sign-out and second-account privacy. Live startup then exposed a cleanup bug: clearing a finished Audio source emitted a false media error and stopped microphone transition. Fixed by removing completion/error callbacks before pausing and removing the source. A regression test checks that source removal cannot trigger the stale error callback. npm test passed: 17 tests plus navigation, backend types and build. Re-published corrected assets and pushed development backend cleanly. The fresh signed-out live browser then passed real startup speech, denied microphone recovery, Pause and no horizontal overflow; the saved paid startup regression script uses a real click and the browser microphone permission. Real buyer phone speech and noisy-shop behavior are still pending.
+
+Next: the buyer opens the HTTPS link in Chrome/Android or Safari/iPhone, allows the microphone, speaks needs, uses a consenting friend as a fictional shopkeeper, tests pause/takeover, saves one offer and reloads. When finished, pause the enabled flag; the trial also expires automatically. Do not mark milestone 1 complete until those phone checks are reported and issues fixed.
+
 ## Live Sarvam development checks — October 5, 2026
 
 The builder added the replacement key directly to development Convex, confirmed Sarvam Model APIs No retention, and approved ₹20 for initial tests. Recorded SARVAM_ZERO_RETENTION_CONFIRMED=true. Temporarily enabled SARVAM_VOICE_TEST_ENABLED for this batch, then set it false after checks; this was not authorization for ongoing paid public use.

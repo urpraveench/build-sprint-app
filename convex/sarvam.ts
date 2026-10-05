@@ -1,5 +1,6 @@
 declare const process: { env: Record<string, string | undefined> };
 import { ConvexError, v } from "convex/values";
+import { voiceTestingEnabled } from "./voiceTrial";
 import { Agent } from "@convex-dev/agent";
 import { createOpenAICompatible } from "@ai-sdk/openai-compatible";
 import { action } from "./_generated/server";
@@ -10,7 +11,7 @@ export async function hashToken(token:string) { return [...new Uint8Array(await 
 function key() {
  if(!process.env.SARVAM_API_KEY)throw new ConvexError("Voice setup is waiting for your Sarvam key. Your text is still on this device.");
  if(process.env.SARVAM_ZERO_RETENTION_CONFIRMED!=="true")throw new ConvexError("Confirm No retention for Sarvam Model APIs before sending audio.");
- if(process.env.SARVAM_VOICE_TEST_ENABLED!=="true")throw new ConvexError("Voice testing is paused. No paid session was started.");
+ if(!voiceTestingEnabled())throw new ConvexError("Voice testing is paused. No paid session was started.");
  return process.env.SARVAM_API_KEY;
 }
 async function provider(path:string,body:FormData|Record<string,unknown>,secret:string) {

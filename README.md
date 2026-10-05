@@ -1,6 +1,6 @@
 # Development status: one-shop voice enquiry
 
-The milestone 1 interface and text-only account storage are built. **Live voice is awaiting a Sarvam key and real-phone proof; the milestone is not complete.** No paid provider request or app deployment has occurred.
+The milestone 1 interface and text-only account storage are built. **Sarvam API checks passed in Hindi and Telugu; real-phone proof is still pending, so the milestone is not complete.** Development HTTPS testing is published at https://effervescent-kingfisher-446.convex.site/app.html. Production remains unpublished.
 
 Open `/app.html` for the new conversation workspace. The earlier form-based foundation remains at `/app.html?legacy=1`, with existing data preserved. The original setup and test notes below remain useful for that foundation.
 
@@ -10,7 +10,7 @@ Open `/app.html` for the new conversation workspace. The earlier form-based foun
 
 The builder rejected the long offer form on October 5, 2026. PRODUCT.md, IDEA_SCOPE.md, PLAN.md and DESIGN.md now specify a spoken assistant: in-shop enquiry, private decision help, situational negotiation, and later authorized calling with an unanswered-call fallback. Only the buyer accepts or promises to buy. This documentation revision does not change application code or connect a service.
 
-The instructions below describe the existing development foundation, not the new conversational experience. These earlier checks cover note/photo capture only. The new voice configuration and interface are described above and below; real voice remains untested, and negotiation/calling are unbuilt. Existing saved notes/photos/offers remain intact.
+The instructions below describe the existing development foundation, not the new conversational experience. These earlier checks cover note/photo capture only. The new voice configuration and interface are described above and below; real human microphone speech remains untested, and negotiation/calling are unbuilt. Existing saved notes/photos/offers remain intact.
 
 The earlier milestone 1 at `/app.html` lets a buyer enter needs/budget, keep two shops' original notes and photos, confirm offer details, and save a side-by-side comparison. Needs, sources, confirmed offers, and the comparison are stored in the buyer's Convex account and survive reload/sign-out. One current purchase per account; two offers for this milestone.
 
@@ -67,7 +67,7 @@ Existing Convex Auth needs `JWT_PRIVATE_KEY` and `JWKS` on each deployment; deve
 
 ## Sarvam voice build status
 
-Sarvam is approved for milestone 1; Hindi, Telugu and mixed-English conversations are required. The development conversational workspace and model actions are implemented, but no real voice call has been tested. Only text is retained. The selected route uses Model APIs, not the packaged Voice Agents service; a Sarvam model API key is needed in Convex. Voice remains disabled. See PLAN.md for the current step.
+Sarvam is approved for milestone 1; Hindi, Telugu and mixed-English conversations are required. The development conversational workspace and model actions are implemented, and bounded real API checks passed using generated speech. Real phone speech remains untested. Only text is retained. The selected route uses Model APIs, not the packaged Voice Agents service; a Sarvam model API key is needed in Convex. Voice is available only within an explicitly enabled, expiring development trial. See PLAN.md for the current step.
 
 Official references: [models](https://docs.sarvam.ai/api/getting-started/models), [Indian-language guidance](https://docs.sarvam.ai/api/getting-started/building-for-india), [component API pricing](https://docs.sarvam.ai/api/getting-started/pricing), [browser connection and key protection](https://docs.sarvam.ai/conversations/deploy/sdks/web). Component API prices are not an all-in Voice Agents quote.
 
@@ -77,21 +77,27 @@ All secrets stay in Convex development environment settings, not a browser varia
 
 - `SARVAM_API_KEY`: obtain from your Sarvam account and enter directly in Convex settings. Never send its value in chat.
 - `SARVAM_ZERO_RETENTION_CONFIRMED`: leave unset until Sarvam **Settings → Workspace → Data retention → Model APIs** is saved as **No retention (0 days)**. Then set `true` after confirming that setting for the key’s workspace. This flag does not set retention at Sarvam.
-- `SARVAM_VOICE_TEST_ENABLED`: leave unset until the bounded development test is ready; `true` enables the test. No public paid-use approval is implied.
+- `SARVAM_VOICE_TEST_ENABLED`: `true` enables only an agreed bounded development trial.
+- `SARVAM_VOICE_TEST_UNTIL`: required expiry as Unix milliseconds; both flags must permit the trial. After expiry, new sessions and provider attempts are blocked while text remains available. No ongoing public paid-use approval is implied.
 
-The [provider retention instructions](https://docs.sarvam.ai/api/platform/data-retention) support zero retention for Model APIs, not Voice Agents. No setting has been verified on the builder’s account.
+The [provider retention instructions](https://docs.sarvam.ai/api/platform/data-retention) support zero retention for Model APIs, not Voice Agents. The builder confirmed No retention for Model APIs on October 5, 2026.
 
 Models: Saaras v4 listening, Sarvam 105B Conversations decision/extraction, Bulbul v3 standard `shubh` speech. The Convex agent component handles the bounded model call with message storage disabled; the offer save stores only account-owned text/facts/corrections. No gateway/provider substitution, phone-calling platform or additional host was selected.
 
 Each spoken turn is processed after a pause, then the assistant speaks; listening resumes after playback. Pause/takeover stop microphone and playback. Closing while a turn is not yet transcribed may require repeating that turn; completed text drafts survive reload when browser storage is available. This turn-based implementation still needs latency, silence detection and interruption checks on actual phones. No promise of fully simultaneous speaking/listening is made.
 
-Backend limits: 10-minute session; maximum 24-second 16kHz mono WAV input; bounded 60-turn / 24,000-character text; 1,600 output tokens; 48 reserved provider attempts/session; 6 sessions and 120 reserved attempts/day across the app; single active turn; no automatic retry. These caps do not constitute a monetary hard limit or approval of public spending.
+Backend limits: 10-minute session; maximum 24-second 16kHz mono WAV input; bounded 60-turn / 24,000-character text; 1,600 output tokens; 48 reserved provider attempts/session; 6 sessions per approved trial and 120 reserved attempts/day across the app; single active turn; no automatic retry. These caps do not constitute a monetary hard limit or approval of public spending.
 
 ## Check on a phone
 
-For the current interface preview, keep the computer running and connect your phone to the same Wi-Fi. Open `http://192.168.29.142:5174/app.html`, select Hindi/Hinglish or Telugu/English, and tap **Tell me what you’re buying**. With the key absent, the page must explain that voice setup is waiting; it must not pretend to listen. You can use **Sign in to reopen my offer** for an offer already saved to your account. Browser test accounts are fictional and are not your account.
+Open **https://effervescent-kingfisher-446.convex.site/app.html** in Chrome on Android or Safari on iPhone, rather than inside a messaging app. This is the published development test site; mobile data works and the computer need not stay running. Voice requires an active approved trial, with an explicit expiry; a paused notice means the window has ended.
 
-This HTTP link cannot use the phone microphone. After key/privacy configuration and authorized HTTPS hosting, test the complete flow: speak needs; check short brief; identify shop; introduce assistant; confirm shopkeeper agreement; answer enquiry; test Pause/Take over/Resume; end; correct one detail if needed; Looks right → sign in → save; reload and confirm the offer/text reopens. Check that unknown extra costs remain unknown and hidden facts are unreviewed. The secure production URL has not been published or verified.
+1. Select Hindi/Hinglish or Telugu mixed with English, tap **Tell me what you’re buying**, allow microphone access, and speak product, purpose and budget. Tap **Play assistant** if your browser asks for a sound gesture.
+2. Review the short brief, identify a fictional shop, introduce the assistant, and have a consenting friend play the shopkeeper. Confirm agreement, then give a made-up model, quoted price and inclusions; do not supply real private shop/customer information for this first test.
+3. Test Pause, Take over and Resume. Ask the assistant to book or accept the deal: it must hand control back to the buyer. Use **Answer finished** if silence does not end a spoken turn.
+4. End the conversation, check the short summary, correct one detail if needed, and save after signing in or creating your account. Reload; conversation text and saved details must reopen. Unknown extra costs must remain Not provided; original speech text remains alongside corrections. Only text is retained.
+
+Start with one conversation of a few minutes within the approved ₹20 test allowance. Call limits are not a monetary hard cap. Tell the builder when finished so voice can also be paused before automatic expiry. This is not proof of noisy-shop accuracy, naturalness or Safari microphone behavior; those need the builder's own phone observation.
 
 ## Verification of the new flow
 

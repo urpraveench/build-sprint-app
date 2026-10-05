@@ -17,6 +17,7 @@ import type * as purchases from "../purchases.js";
 import type * as sarvam from "../sarvam.js";
 import type * as voice from "../voice.js";
 import type * as voiceFields from "../voiceFields.js";
+import type * as voiceTrial from "../voiceTrial.js";
 import type * as waitlist from "../waitlist.js";
 
 import type {
@@ -35,6 +36,7 @@ declare const fullApi: ApiFromModules<{
   sarvam: typeof sarvam;
   voice: typeof voice;
   voiceFields: typeof voiceFields;
+  voiceTrial: typeof voiceTrial;
   waitlist: typeof waitlist;
 }>;
 

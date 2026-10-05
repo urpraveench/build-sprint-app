@@ -16,15 +16,15 @@ Implemented the development conversation workspace, Sarvam model configuration, 
 
 Use Sarvam Model APIs through Convex: `saaras:v4` for listening, `sarvam-105b-conversations` for question selection/extraction, `bulbul:v3` with standard `shubh` for speaking. The packaged Voice Agents route was explored but not selected: Model APIs support zero retention; Voice Agents currently do not. No extra voice host, telephony service or browser secret is needed.
 
-Voice requests remain disabled. Before a real voice test:
+Development setup is complete and a time-limited HTTPS phone trial was authorized. Voice is enabled only until October 5, 2026, 10:09 pm IST. Setup requirements for another authorized trial:
 
 1. Add `SARVAM_API_KEY` in the development Convex settings; never paste it into chat.
 2. Set Sarvam Settings → Workspace → Data retention → Model APIs override to **No retention (0 days)**, then confirm that account setting before setting `SARVAM_ZERO_RETENTION_CONFIRMED=true` in Convex. A flag alone does not configure Sarvam.
 3. Review the bounded development test allowance, then set `SARVAM_VOICE_TEST_ENABLED=true` only for the agreed test. Public paid use is not enabled or approved.
 4. Test Hindi/Telugu mixed speech, numbers, noise, useful follow-ups, silence, microphone refusal, late processing, pause/takeover, commitment requests and corrections with a consenting participant. Key-free fixture tests are not voice-quality proof.
-5. A phone microphone requires HTTPS. The Wi-Fi HTTP preview can check layout/setup only; it cannot prove live voice. Publishing remains a separate authorized shipping step after the milestone is confirmed. Do not invent a production link or substitute another host.
+5. A phone microphone requires HTTPS. The Wi-Fi HTTP preview can check layout/setup only; it cannot prove live voice. Development test publication was separately authorized for this phone trial. Production shipping remains separate after milestone confirmation. Do not invent a production link or substitute another host.
 
-No real provider call or real-phone/noisy-shop test has occurred. Milestone 1 remains **awaiting voice proof**, not complete. Continue this milestone; do not build comparisons, negotiation or calls yet.
+Generated-speech Model API checks passed in Hindi and Telugu; an Agent session-reference bug was fixed and covered by a regression test. The builder supplied the key, confirmed No retention, approved ₹20 testing, and authorized development HTTPS publication for their phone trial. Voice trials now require SARVAM_VOICE_TEST_UNTIL; expiry blocks further paid attempts. No real-phone/noisy-shop test has occurred. Milestone 1 remains **awaiting voice proof**, not complete. Continue this milestone; do not build comparisons, negotiation or calls yet.
 
 ## Implementation order
 

@@ -40,7 +40,7 @@ test("short review persists original text, confirms only visible facts, retries 
  expect(await t.run(ctx=>ctx.db.system.query("_storage").take(10))).toHaveLength(0);
 });
 test("voice limits and session ownership are checked on the server",async()=>{
- vi.stubEnv("SARVAM_VOICE_TEST_ENABLED","true");vi.stubEnv("SARVAM_ZERO_RETENTION_CONFIRMED","true");vi.stubEnv("SARVAM_API_KEY","fictional-test-key");
+ vi.stubEnv("SARVAM_VOICE_TEST_ENABLED","true");vi.stubEnv("SARVAM_VOICE_TEST_UNTIL",String(Date.now()+3600000));vi.stubEnv("SARVAM_ZERO_RETENTION_CONFIRMED","true");vi.stubEnv("SARVAM_API_KEY","fictional-test-key");
  try{const t=convexTest(schema,modules),[a,b]=await t.run(async ctx=>Promise.all([ctx.db.insert("users",{email:"quota-a@example.test"}),ctx.db.insert("users",{email:"quota-b@example.test"})]));const alice=t.withIdentity({subject:`${a}|s`}),bob=t.withIdentity({subject:`${b}|s`}),tokenHash="a".repeat(64);
  const sessionId=await alice.mutation(api.voice.newSession,{tokenHash});
  await expect(bob.mutation(internal.voice.reserve,{sessionId,tokenHash,attempts:3})).rejects.toThrow("ended");
@@ -55,7 +55,7 @@ test("missing voice configuration fails before a paid request",async()=>{
 });
 
 test("a transcribed answer survives model failure; no audio or AI trace is retained",async()=>{
- vi.stubEnv("SARVAM_API_KEY","fictional-key");vi.stubEnv("SARVAM_VOICE_TEST_ENABLED","true");vi.stubEnv("SARVAM_ZERO_RETENTION_CONFIRMED","true");
+ vi.stubEnv("SARVAM_API_KEY","fictional-key");vi.stubEnv("SARVAM_VOICE_TEST_ENABLED","true");vi.stubEnv("SARVAM_VOICE_TEST_UNTIL",String(Date.now()+3600000));vi.stubEnv("SARVAM_ZERO_RETENTION_CONFIRMED","true");
  const {Agent}=await import("@convex-dev/agent");
  const model=vi.spyOn(Agent.prototype,"generateText").mockRejectedValue(new Error("fictional provider failure"));
  const network=vi.spyOn(globalThis,"fetch").mockResolvedValue(new Response(JSON.stringify({transcript:"Model C60 costs 22000",language_code:"hi-IN"}),{status:200,headers:{"Content-Type":"application/json"}}));
@@ -69,7 +69,7 @@ test("a transcribed answer survives model failure; no audio or AI trace is retai
 });
 
 test("an unconfirmed provider retention setting prevents audio processing",async()=>{
- vi.stubEnv("SARVAM_API_KEY","fictional-key");vi.stubEnv("SARVAM_VOICE_TEST_ENABLED","true");vi.stubEnv("SARVAM_ZERO_RETENTION_CONFIRMED","");
+ vi.stubEnv("SARVAM_API_KEY","fictional-key");vi.stubEnv("SARVAM_VOICE_TEST_ENABLED","true");vi.stubEnv("SARVAM_VOICE_TEST_UNTIL",String(Date.now()+3600000));vi.stubEnv("SARVAM_ZERO_RETENTION_CONFIRMED","");
  try{const t=convexTest(schema,modules),network=vi.spyOn(globalThis,"fetch");expect(await t.query(api.voice.setup,{})).toMatchObject({ready:false});await expect(t.mutation(api.voice.newSession,{tokenHash:"a".repeat(64)})).rejects.toThrow("retention");expect(network).not.toHaveBeenCalled();network.mockRestore();}finally{vi.unstubAllEnvs();}
 });
 
@@ -82,7 +82,7 @@ test("pausing an in-memory audio turn stops the microphone and discards its samp
 });
 
 test("a complete Sarvam-compatible reply reaches the next spoken question without saving an AI trace",async()=>{
- vi.stubEnv("SARVAM_API_KEY","fictional-key");vi.stubEnv("SARVAM_VOICE_TEST_ENABLED","true");vi.stubEnv("SARVAM_ZERO_RETENTION_CONFIRMED","true");
+ vi.stubEnv("SARVAM_API_KEY","fictional-key");vi.stubEnv("SARVAM_VOICE_TEST_ENABLED","true");vi.stubEnv("SARVAM_VOICE_TEST_UNTIL",String(Date.now()+3600000));vi.stubEnv("SARVAM_ZERO_RETENTION_CONFIRMED","true");
  const network=vi.spyOn(globalThis,"fetch").mockImplementation(async(input)=>{
   const url=String(input instanceof Request?input.url:input);
   const body=url.endsWith('speech-to-text')?{transcript:'Model C60 costs 22000',language_code:'hi-IN'}:url.endsWith('text-to-speech')?{audios:['fictional-audio']}:{id:'fictional',object:'chat.completion',created:1,model:'sarvam-105b-conversations',choices:[{index:0,message:{role:'assistant',content:JSON.stringify({next:'inclusions',brief,facts:[{key:'model',value:'C60',turn:2,quote:'Model C60'},{key:'price',value:'22000',turn:2,quote:'22000'}]})},finish_reason:'stop'}],usage:{prompt_tokens:100,completion_tokens:100,total_tokens:200}};
@@ -92,4 +92,16 @@ test("a complete Sarvam-compatible reply reaches the next spoken question withou
  const response=await t.action(api.sarvam.turn,{sessionId,token,audio:wavBase64(new Float32Array(16000),16000),language:'hi-IN',phase:'shop',turns,brief});
  expect(response.error).toBeNull();expect(response.code).toBe('inclusions');expect(response.audio).toBe('fictional-audio');expect(response.facts).toHaveLength(2);
  }finally{network.mockRestore();vi.unstubAllEnvs();}
+});
+
+
+test("an expired paid trial blocks new sessions and further paid requests",async()=>{
+ vi.stubEnv("SARVAM_API_KEY","fictional-key");vi.stubEnv("SARVAM_ZERO_RETENTION_CONFIRMED","true");vi.stubEnv("SARVAM_VOICE_TEST_ENABLED","true");vi.stubEnv("SARVAM_VOICE_TEST_UNTIL",String(Date.now()-1));
+ try{const t=convexTest(schema,modules);expect(await t.query(api.voice.setup,{})).toMatchObject({ready:false});await expect(t.mutation(api.voice.newSession,{tokenHash:"a".repeat(64)})).rejects.toThrow("paused");const sessionId=await t.run(ctx=>ctx.db.insert("voiceSessions",{tokenHash:"a".repeat(64),userId:null,expiresAt:Date.now()+60000,attempts:0,busyUntil:0}));await expect(t.mutation(internal.voice.reserve,{sessionId,tokenHash:"a".repeat(64),attempts:1})).rejects.toThrow("trial has ended");}finally{vi.unstubAllEnvs();}
+});
+
+
+test("discarding playback cannot replace the next microphone state with a false media error",async()=>{
+ const {discardPlayback}=await import('../src/voiceAudio');const falseError=vi.fn(),ended=vi.fn();const audio={onended:ended,onerror:falseError,pause:vi.fn(),removeAttribute:vi.fn(function(this:any){this.onerror?.();}),load:vi.fn()};
+ discardPlayback(audio as any);expect(falseError).not.toHaveBeenCalled();expect(audio.onended).toBeNull();expect(audio.onerror).toBeNull();expect(audio.removeAttribute).toHaveBeenCalledWith('src');expect(audio.pause).toHaveBeenCalledTimes(1);
 });

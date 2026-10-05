@@ -22,3 +22,12 @@ export async function listenTurn({context,onDone,onQuiet,onError}) {
   };
   return {cancel:()=>stop(false),finish:()=>stop(true)};
 }
+
+// Remove callbacks before clearing the source: clearing it can itself emit a media error.
+export function discardPlayback(audio) {
+  audio.onended = null;
+  audio.onerror = null;
+  audio.pause();
+  audio.removeAttribute('src');
+  audio.load();
+}

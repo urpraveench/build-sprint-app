@@ -1,28 +1,30 @@
 declare const process: { env: Record<string, string | undefined> };
 import { getAuthUserId } from "@convex-dev/auth/server";
 import { ConvexError, v } from "convex/values";
+import { voiceTestingEnabled } from "./voiceTrial";
 import { mutation, query, internalMutation } from "./_generated/server";
 import { checkFacts, checkTurns, voiceBrief, voiceFact, voiceTurn } from "./voiceFields";
 
 export const setup=query({args:{},returns:v.object({ready:v.boolean(),message:v.string()}),handler:async()=>{
- const configured=!!process.env.SARVAM_API_KEY,privacy=process.env.SARVAM_ZERO_RETENTION_CONFIRMED==="true",enabled=process.env.SARVAM_VOICE_TEST_ENABLED==="true";
+ const configured=!!process.env.SARVAM_API_KEY,privacy=process.env.SARVAM_ZERO_RETENTION_CONFIRMED==="true",enabled=voiceTestingEnabled();
  return {ready:configured&&privacy&&enabled,message:!configured?"Voice setup is waiting for your Sarvam key. No paid voice session is enabled.":!privacy?"Confirm No retention for Model APIs in Sarvam before voice testing. No audio has been sent.":!enabled?"Sarvam is configured. Paid voice testing is paused. Your saved text is still available.":"Ready for a bounded voice test."};
 }});
 // No text or audio in this table: only expiring capabilities and usage counters.
 export const newSession=mutation({args:{tokenHash:v.string()},returns:v.id("voiceSessions"),handler:async(ctx,{tokenHash})=>{
  if(!process.env.SARVAM_API_KEY)throw new ConvexError("Voice setup is waiting for your Sarvam key.");
  if(process.env.SARVAM_ZERO_RETENTION_CONFIRMED!=="true")throw new ConvexError("Confirm No retention for Sarvam Model APIs before starting voice.");
- if(process.env.SARVAM_VOICE_TEST_ENABLED!=="true") throw new ConvexError("Voice testing is paused. Your saved offers are still available.");
+ if(!voiceTestingEnabled()) throw new ConvexError("Voice testing is paused. Your saved offers are still available.");
  if(!/^[a-f0-9]{64}$/.test(tokenHash))throw new ConvexError("Could not start a secure conversation.");
- const day=Math.floor(Date.now()/86400000),key="voice:sessions";
+ const day=Number(process.env.SARVAM_VOICE_TEST_UNTIL),key="voice:sessions";
  const limit=await ctx.db.query("aiLimits").withIndex("by_key",q=>q.eq("key",key).eq("window",day)).unique();
- if((limit?.count??0)>=6)throw new ConvexError("Today's voice test limit is reached. No new paid session was started.");
+ if((limit?.count??0)>=6)throw new ConvexError("This trial's voice session limit is reached. No new paid session was started.");
  if(limit)await ctx.db.patch(limit._id,{count:limit.count+1});else await ctx.db.insert("aiLimits",{key,window:day,count:1});
  const prior=await ctx.db.query("voiceSessions").withIndex("by_token",q=>q.eq("tokenHash",tokenHash)).unique();
  if(prior)throw new ConvexError("Start a new conversation rather than retrying this start.");
  return ctx.db.insert("voiceSessions",{tokenHash,userId:await getAuthUserId(ctx),expiresAt:Date.now()+10*60000,attempts:0,busyUntil:0});
 }});
 export const reserve=internalMutation({args:{sessionId:v.id("voiceSessions"),tokenHash:v.string(),attempts:v.number()},returns:v.null(),handler:async(ctx,a)=>{
+ if(!voiceTestingEnabled())throw new ConvexError("The paid voice trial has ended. Your captured text is still available.");
  const s=await ctx.db.get(a.sessionId),user=await getAuthUserId(ctx);
  if(!s || s.tokenHash!==a.tokenHash || (s.userId && s.userId!==user) || s.expiresAt<=Date.now())throw new ConvexError("This voice session has ended. Review the captured text.");
  if(!Number.isInteger(a.attempts) || a.attempts<1 || a.attempts>3)throw new ConvexError("Invalid voice request.");
