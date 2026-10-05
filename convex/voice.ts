@@ -6,7 +6,7 @@ import { checkFacts, checkTurns, voiceBrief, voiceFact, voiceTurn } from "./voic
 
 export const setup=query({args:{},returns:v.object({ready:v.boolean(),message:v.string()}),handler:async()=>{
  const configured=!!process.env.SARVAM_API_KEY,privacy=process.env.SARVAM_ZERO_RETENTION_CONFIRMED==="true",enabled=process.env.SARVAM_VOICE_TEST_ENABLED==="true";
- return {ready:configured&&privacy&&enabled,message:!configured?"Voice setup is waiting for your Sarvam key. No paid voice session is enabled.":!privacy?"Confirm No retention for Model APIs in Sarvam before voice testing. No audio has been sent.":!enabled?"Sarvam is configured. Voice testing is paused until the test spending allowance is approved.":"Ready for a bounded voice test."};
+ return {ready:configured&&privacy&&enabled,message:!configured?"Voice setup is waiting for your Sarvam key. No paid voice session is enabled.":!privacy?"Confirm No retention for Model APIs in Sarvam before voice testing. No audio has been sent.":!enabled?"Sarvam is configured. Paid voice testing is paused. Your saved text is still available.":"Ready for a bounded voice test."};
 }});
 // No text or audio in this table: only expiring capabilities and usage counters.
 export const newSession=mutation({args:{tokenHash:v.string()},returns:v.id("voiceSessions"),handler:async(ctx,{tokenHash})=>{

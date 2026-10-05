@@ -1,3 +1,15 @@
+## Live Sarvam development checks — October 5, 2026
+
+The builder added the replacement key directly to development Convex, confirmed Sarvam Model APIs No retention, and approved ₹20 for initial tests. Recorded SARVAM_ZERO_RETENTION_CONFIRMED=true. Temporarily enabled SARVAM_VOICE_TEST_ENABLED for this batch, then set it false after checks; this was not authorization for ongoing paid public use.
+
+Two first Hindi attempts successfully synthesized and transcribed speech but failed before calling the conversation model: the Convex Agent required a user or thread reference. Fixed this with an opaque session-scoped reference, no history lookup and saveMessages:none. A regression check now exercises the actual Agent with a fabricated compatible API reply rather than mocking Agent.generateText. No audio or private provider response is logged; diagnostics include stage, error class and HTTP status only.
+
+The fixed real Model API pipeline passed Hindi/Hinglish and Telugu mixed with English using generated price questions held in memory. Returned transcripts and next-question audio, with no invented offer facts. Measured full round trips: Hindi 5.6 seconds; Telugu 3.6 seconds. Telugu transcribed “quoted” as “coated”: these checks do not establish real buyer speech accuracy, naturalness, microphone quality or noise robustness. No audio was written to disk or Convex storage. This batch made six speech-synthesis requests, four transcription requests and two conversation requests; exact provider billing was not retrieved. Calls were bounded well below the approved ₹20 based on published unit rates, not a rupee hard cap.
+
+npm test passed: 15 tests plus navigation, backend types and build. Browser at 390px confirmed configured/paused state and no page overflow. Development backend updated only; no GitHub push or app deployment. Builder Pulse flush delivered one event with no local backlog; token fields and GrowthX aggregate totals were not independently verified.
+
+Next: a separately enabled, supervised real microphone session and secure phone test, including interruption, refusal, mixed speech and saving/reopening. Milestone 1 remains awaiting those checks.
+
 # Progress
 
 ## Milestone 1 development implementation — October 5, 2026

@@ -80,3 +80,16 @@ test("pausing an in-memory audio turn stops the microphone and discards its samp
  vi.stubGlobal("navigator",{mediaDevices:{getUserMedia:vi.fn().mockResolvedValue({getTracks:()=>[{stop:stopped}]})}});
  try{const capture=await listenTurn({context,onDone:done,onQuiet:quiet,onError:vi.fn()});processor.onaudioprocess({inputBuffer:{getChannelData:()=>new Float32Array(4096).fill(0.1)}});capture.cancel();capture.finish();expect(stopped).toHaveBeenCalledTimes(1);expect(done).not.toHaveBeenCalled();expect(processor.onaudioprocess).toBeNull();expect(quiet).not.toHaveBeenCalled();}finally{vi.unstubAllGlobals();}
 });
+
+test("a complete Sarvam-compatible reply reaches the next spoken question without saving an AI trace",async()=>{
+ vi.stubEnv("SARVAM_API_KEY","fictional-key");vi.stubEnv("SARVAM_VOICE_TEST_ENABLED","true");vi.stubEnv("SARVAM_ZERO_RETENTION_CONFIRMED","true");
+ const network=vi.spyOn(globalThis,"fetch").mockImplementation(async(input)=>{
+  const url=String(input instanceof Request?input.url:input);
+  const body=url.endsWith('speech-to-text')?{transcript:'Model C60 costs 22000',language_code:'hi-IN'}:url.endsWith('text-to-speech')?{audios:['fictional-audio']}:{id:'fictional',object:'chat.completion',created:1,model:'sarvam-105b-conversations',choices:[{index:0,message:{role:'assistant',content:JSON.stringify({next:'inclusions',brief,facts:[{key:'model',value:'C60',turn:2,quote:'Model C60'},{key:'price',value:'22000',turn:2,quote:'22000'}]})},finish_reason:'stop'}],usage:{prompt_tokens:100,completion_tokens:100,total_tokens:200}};
+  return new Response(JSON.stringify(body),{status:200,headers:{'Content-Type':'application/json'}});
+ });
+ try{const t=convexTest(schema,modules);const {hashToken}=await import('../convex/sarvam');const token='fictional-smoke';const sessionId=await t.mutation(api.voice.newSession,{tokenHash:await hashToken(token)});
+ const response=await t.action(api.sarvam.turn,{sessionId,token,audio:wavBase64(new Float32Array(16000),16000),language:'hi-IN',phase:'shop',turns,brief});
+ expect(response.error).toBeNull();expect(response.code).toBe('inclusions');expect(response.audio).toBe('fictional-audio');expect(response.facts).toHaveLength(2);
+ }finally{network.mockRestore();vi.unstubAllEnvs();}
+});
