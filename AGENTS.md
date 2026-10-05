@@ -89,7 +89,7 @@ Reply cap: Start testing with about 500 output tokens, small pieces of generated
 
 Calls cap: Proposed starting limit: 100 AI calls an hour across the app, enforced by Convex before calling the provider. Add account-level controls where needed so one buyer cannot consume the whole allowance. These limits are planned, not implemented. Keep retries bounded and count each provider attempt.
 
-Provider limit: Monthly budget is unlimited. Ask me for the amount before enabling paid public use, confirm whether the provider offers an enforced spending limit, and help me set it. Do not call an alert a hard cap. App AI usage is separate from Builder Pulse's coding-token reports.
+Provider limit: Monthly budget is $100. Ask me for the amount before enabling paid public use, confirm whether the provider offers an enforced spending limit, and help me set it. Do not call an alert a hard cap. App AI usage is separate from Builder Pulse's coding-token reports.
 
 Failure or limit reached: Use plain messages such as Busy right now. Try again in a few minutes. Preserve notes, sources, and saved offers. Show a specific recovery action for an unreadable photo or recording. Never invent a result when the provider fails.
 
