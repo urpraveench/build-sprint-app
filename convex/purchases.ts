@@ -36,7 +36,7 @@ export const save = mutation({
     const values = validate(args);
     const existing = await ctx.db.query("purchases").withIndex("by_user", q => q.eq("userId", userId)).unique();
     if (existing) {
-      await ctx.db.patch(existing._id, { ...values, updatedAt: Date.now() });
+      await ctx.db.patch(existing._id, { ...values, updatedAt: Math.max(Date.now(), existing.updatedAt + 1) });
       return existing._id;
     }
     return await ctx.db.insert("purchases", { userId, ...values, updatedAt: Date.now() });

@@ -8,8 +8,11 @@
  * @module
  */
 
+import type * as ai from "../ai.js";
 import type * as auth from "../auth.js";
 import type * as http from "../http.js";
+import type * as offerFields from "../offerFields.js";
+import type * as offers from "../offers.js";
 import type * as purchases from "../purchases.js";
 import type * as waitlist from "../waitlist.js";
 
@@ -20,8 +23,11 @@ import type {
 } from "convex/server";
 
 declare const fullApi: ApiFromModules<{
+  ai: typeof ai;
   auth: typeof auth;
   http: typeof http;
+  offerFields: typeof offerFields;
+  offers: typeof offers;
   purchases: typeof purchases;
   waitlist: typeof waitlist;
 }>;

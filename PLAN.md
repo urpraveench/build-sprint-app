@@ -45,3 +45,9 @@ Shop calling, voice agents, shop discovery, negotiation, WhatsApp catalog reques
 Use Codex for code, GitHub for source control, and Convex for the database, backend, sign-in, photo storage, and static hosting. Any additional service needed for AI or photo reading requires the user's approval before use.
 
 This planning change writes no application code and does not deploy the page.
+
+## Current agreed step
+
+Milestone 1 is implemented in development at `/app.html`: two source-backed, buyer-confirmed offers and a saved Convex comparison, including reload recovery. PROGRESS.md records checks and remaining limits. The builder authorized configuring a model and will add the key later; OpenAI `gpt-5.4-mini` is selected for bounded note/photo extraction. No paid public AI or production deployment is enabled.
+
+Next is the builder's phone check and development-key extraction testing. Do not start milestone 2 or ship before milestone confirmation and shipping authorization. PRODUCT.md overrides the older “Outside v1” paragraph here: optional Maps visits and voice remain intended later V1 work, outside the current milestone.
